@@ -50,3 +50,4 @@ print(f'total de CO2 emitido na viagem, aproximadamente: {calculaCO2(distancia,m
 
 
 
+
