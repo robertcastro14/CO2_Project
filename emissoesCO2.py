@@ -1,0 +1,52 @@
+def calculaCO2(distancia, modal):
+    
+    
+    
+    fatores_emissao = {
+    'carro': 192,      
+    'onibus': 68,     
+    'metro': 35,
+    'moto':87,       
+    'bicicleta': 0,    
+    'caminhada': 0}
+    if modal.lower() in fatores_emissao:
+        emissao = distancia * fatores_emissao[modal.lower()]
+        return round(emissao, 2)
+    else:
+        return 0.0
+
+
+distancia = float(input('qual a distância da viagem, em km? '))
+modal = input('Qual o modal de transporte? ')
+print(f'total de CO2 emitido na viagem, aproximadamente: {calculaCO2(distancia,modal)}')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
