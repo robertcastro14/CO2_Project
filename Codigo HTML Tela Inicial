@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoRoute Calculator</title>
+  
+  
+  <link rel="stylesheet" href="css/tela_inicial.css">
+
+  
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+  <header>
+    <h1>🌿 EcoRoute Calculator</h1>
+    <p>Calcule e compare as emissões de CO2 dos seus trajetos</p>
+  </header>
+
+  <nav>
+    <button class="active">Mapa</button>
+    <button>Veículos</button>
+    <button>Calcular</button>
+    <button>Resultados</button>
+  </nav>
+
+  <main>
+    <section class="rota">
+      <h2>Planeje sua Rota</h2>
+      <p>Clique no mapa para definir pontos de origem e destino</p>
+      <div class="map-container">
+        <button id="limpar">🔄 Limpar</button>
+        <div id="map"></div>
+      </div>
+    </section>
+  </main>
+
+  
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    const map = L.map('map').setView([-23.5505, -46.6333], 12); // São Paulo
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    let pontos = [];
+    const limparBtn = document.getElementById('limpar');
+
+    map.on('click', function(e) {
+      if (pontos.length < 2) {
+        const marker = L.marker(e.latlng).addTo(map);
+        pontos.push(marker);
+      }
+    });
+
+    limparBtn.addEventListener('click', () => {
+      pontos.forEach(m => map.removeLayer(m));
+      pontos = [];
+    });
+  </script>
+</body>
+</html>
