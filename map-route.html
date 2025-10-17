@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Geração de Rota - Map</title>
+  <link rel="stylesheet" href="css/map-route.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="logo">MapRoute</div>
+      <nav class="top-actions">
+        <button class="btn ghost">Exportar</button>
+        <button class="btn primary">Gerar Rota</button>
+      </nav>
+    </header>
+
+    <main class="layout">
+      <aside class="panel controls">
+        <h2>Geração de Rota</h2>
+
+        <label class="field">
+          <span>Origem</span>
+          <input type="text" placeholder="Rua, cidade ou coordenadas">
+        </label>
+
+        <label class="field">
+          <span>Destino</span>
+          <input type="text" placeholder="Rua, cidade ou coordenadas">
+        </label>
+
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="mode" checked>
+            <span>Mais rápido</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="mode">
+            <span>Mais curto</span>
+          </label>
+        </div>
+
+        <label class="range">
+          <span>Margem de desvio</span>
+          <input type="range" min="0" max="50" value="10">
+        </label>
+
+        <div class="actions">
+          <button class="btn secondary">Limpar</button>
+          <button class="btn primary large">Calcular</button>
+        </div>
+
+        <section class="route-summary">
+          <h3>Resumo da Rota</h3>
+          <div class="summary-row"><span>Distância</span><strong>12.4 km</strong></div>
+          <div class="summary-row"><span>Tempo</span><strong>18 min</strong></div>
+          <div class="summary-row"><span>Paradas</span><strong>2</strong></div>
+        </section>
+      </aside>
+
+      <section class="map-area">
+        <div class="map-header">
+          <div class="search">
+            <input type="text" placeholder="Buscar lugares, endereços...">
+            <button class="icon-btn">🔍</button>
+          </div>
+          <div class="map-actions">
+            <button class="btn small">Camada</button>
+            <button class="btn small">Tráfego</button>
+            <button class="btn small">+/-</button>
+          </div>
+        </div>
+
+        <div class="map-canvas" aria-label="Mapa de rotas">
+          <div class="map-placeholder">Mapa (placeholder)</div>
+        </div>
+
+        <div class="directions">
+          <h4>Instruções</h4>
+          <ol>
+            <li>Siga pela Av. Principal por 2 km</li>
+            <li>Vire à direita na Rua das Flores</li>
+            <li>Chegue ao destino</li>
+          </ol>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">© 2025 MapRoute • Demo</footer>
+  </div>
+</body>
+</html>
