@@ -30,14 +30,17 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+# Application definition
+
 INSTALLED_APPS = [
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles", 
-    "usuario",
+  "django.contrib.admin",
+  "django.contrib.auth",
+  "django.contrib.contenttypes",
+  "django.contrib.sessions",
+  "django.contrib.messages",
+  "django.contrib.staticfiles",
+  "usuario",
+  "nomeRelativoAoMeuTema",
 ]
 
 MIDDLEWARE = [
@@ -125,3 +128,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LOGIN_REDIRECT_URL = '/suaRota/home/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
+
+CORS_ORIGIN_ALLOW_ALL = True
