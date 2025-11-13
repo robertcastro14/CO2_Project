@@ -1,0 +1,89 @@
+/* =============================
+   GLOBAL
+============================= */
+:root {
+    --green-1: #0f5132;
+    --green-2: #198754;
+    --green-4: #e9f5ec;
+    --green-5: #f4fbf7;
+    --shadow-1: rgba(0,0,0,0.08);
+    --radius: 22px;
+}
+
+body {
+    margin: 0;
+    background: var(--green-4);
+    font-family: "Inter", sans-serif;
+}
+
+/* =============================
+   HEADER
+============================= */
+header {
+    background: linear-gradient(135deg, var(--green-1), var(--green-2));
+    padding: 26px 6%;
+    color: white;
+    font-weight: 700;
+    font-size: 28px;
+    box-shadow: 0 4px 18px var(--shadow-1);
+}
+
+/* =============================
+   TITLE
+============================= */
+.page-title {
+    font-size: 3rem;
+    text-align: center;
+    margin-top: 50px;
+    font-weight: 800;
+    color: var(--green-1);
+}
+
+/* =============================
+   TRANSPORT OPTIONS
+============================= */
+.transport-container {
+    width: 90%;
+    max-width: 900px;
+    margin: 60px auto;
+    display: grid;
+    gap: 28px;
+}
+
+.transport-card {
+    background: white;
+    padding: 38px 28px;
+    border-radius: var(--radius);
+    box-shadow: 0 8px 26px var(--shadow-1);
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    transition: 0.25s ease;
+}
+
+.transport-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 30px var(--shadow-1);
+}
+
+.transport-card img {
+    width: 80px;
+    height: 80px;
+}
+
+.transport-card h3 {
+    font-size: 1.6rem;
+    color: var(--green-1);
+    margin-bottom: 6px;
+}
+
+.transport-card p {
+    margin: 0;
+    opacity: 0.8;
+}
+
+/* BEST OPTION HIGHLIGHT */
+.best {
+    border: 3px solid var(--green-2);
+    background: var(--green-5);
+}
