@@ -31,6 +31,25 @@ Distância do trajeto
 Frequência da viagem
 O site vai mostrar a quantidade estimada de CO₂ emitida para o trajeto informado. 
 
+## Configuração rápida (autenticação e banco)
+
+Depois de ativar o `venv` e instalar dependências, crie as migrações e atualize o banco:
+
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+Crie um superusuário para acessar a área administrativa:
+
+```bash
+python manage.py createsuperuser
+```
+
+Acesse a administração em `http://127.0.0.1:8000/admin/` para adicionar dados (contatos) manualmente.
+
+As rotas de autenticação do Django estão habilitadas em `/accounts/` — por exemplo, o login fica em `/accounts/login/`.
+
 ### Imagens
 ![Página inicial](img/home.png) 
 ![Página cálculo](img/calculadora.png)

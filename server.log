@@ -1,0 +1,17 @@
+nohup: ignoring input
+Watching for file changes with StatReloader
+[14/Nov/2025 11:12:43] "GET /accounts/login/ HTTP/1.1" 200 1046
+/workspaces/CO2_Project/CO2_PROJECT/CO2_PROJECT/settings.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+November 14, 2025 - 11:12:20
+Django version 5.2.8, using settings 'CO2_PROJECT.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+Not Found: /
+[14/Nov/2025 11:13:31] "GET / HTTP/1.1" 404 2465
