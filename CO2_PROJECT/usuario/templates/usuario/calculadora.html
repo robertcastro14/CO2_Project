@@ -1,143 +1,101 @@
+{% extends 'base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de CO2</title>
-    <link rel="stylesheet" href="{% static 'usuario/css/style.css' %}">
-    
-    <style>
-        /* Estilos específicos para a calculadora */
-        .calc-section {
-            padding: 4rem 1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
+{% block content %}
 
-        .calc-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        
+        <div class="card shadow-lg border-0 rounded-4">
+            <div class="card-header bg-success text-white text-center py-4 rounded-top-4">
+                <h2 class="mb-0 fw-bold"><i class="bi bi-calculator"></i> EcoRota</h2>
+                <p class="mb-0 opacity-75">Calculadora de Emissão Diária</p>
+            </div>
 
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        input[type="number"], select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-
-        .result-box {
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background-color: #e8f5e9; /* Verde bem claro */
-            border-left: 5px solid #2E7D32;
-            border-radius: 5px;
-            animation: fadeIn 0.5s;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .btn-calc {
-            width: 100%;
-            background-color: #2E7D32;
-            color: white;
-            padding: 15px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-
-        .btn-calc:hover {
-            background-color: #1b5e20;
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="logo">CO₂ Project</div>
-        <nav>
-            <ul>
-                <li><a href="{% url 'home' %}">Início</a></li>
-                <li><a href="{% url 'calculadora' %}">Calculadora</a></li>
-                <li><a href="#">Sobre</a></li>
-                <li><a href="#">Contato</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section class="calc-section">
-            <div class="calc-card">
-                <h2 style="text-align: center; color: #2E7D32; margin-bottom: 1.5rem;">Calculadora de Emissão Diária</h2>
-                
+            <div class="card-body p-5">
                 <form method="POST">
                     {% csrf_token %}
                     
-                    <div class="form-group">
-                        <label for="distancia">Distância percorrida (km/dia):</label>
-                        <input type="number" name="distancia" id="distancia" step="0.1" required placeholder="Ex: 15.5">
+                    <div class="mb-4">
+                        <label for="distancia" class="form-label fw-bold text-secondary">
+                            <i class="bi bi-geo-alt-fill"></i> Distância percorrida (km/dia):
+                        </label>
+                        <input type="number" name="distancia" id="distancia" step="0.1" 
+                               class="form-control form-control-lg bg-light" 
+                               placeholder="Ex: 15.5" required>
                     </div>
 
-                    <div class="form-group">
-                        <label for="transporte">Meio de Transporte:</label>
-                        <select name="transporte" id="transporte">
-                            <option value="carro">Carro (Gasolina)</option>
-                            <option value="onibus">Ônibus</option>
-                            <option value="metro">Metrô/Trem</option>
-                            <option value="moto">Motocicleta</option>
-                            <option value="bicicleta">Bicicleta</option>
-                            <option value="a_pe">A pé</option>
+                    <div class="mb-4">
+                        <label for="transporte" class="form-label fw-bold text-secondary">
+                            <i class="bi bi-bus-front-fill"></i> Meio de Transporte:
+                        </label>
+                        <select name="transporte" id="transporte" class="form-select form-select-lg bg-light">
+                            <option value="carro">🚗 Carro (Gasolina)</option>
+                            <option value="onibus">🚌 Ônibus</option>
+                            <option value="metro">🚇 Metrô/Trem</option>
+                            <option value="moto">🏍️ Motocicleta</option>
+                            <option value="bicicleta">🚲 Bicicleta</option>
+                            <option value="a_pe">🚶 A pé</option>
                         </select>
                     </div>
 
-                    <button type="submit" class="btn-calc">Calcular Pegada</button>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-success btn-lg py-3 fw-bold shadow-sm hover-effect">
+                            Calcular Pegada de Carbono
+                        </button>
+                    </div>
                 </form>
 
                 {% if resultado %}
+                    <hr class="my-4">
+                    
                     {% if resultado.erro %}
-                        <div class="result-box" style="border-left-color: red; background-color: #ffebee;">
-                            <p style="color: red;">{{ resultado.erro }}</p>
+                        <div class="alert alert-danger d-flex align-items-center" role="alert">
+                            <i class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2"></i>
+                            <div>
+                                {{ resultado.erro }}
+                            </div>
                         </div>
                     {% else %}
-                        <div class="result-box">
-                            <h3 style="color: #2E7D32; margin-bottom: 10px;">Resultado:</h3>
-                            <p>Ao percorrer <strong>{{ resultado.distancia }} km</strong> de <strong>{{ resultado.transporte }}</strong>:</p>
-                            <hr style="border: 0; border-top: 1px solid #ccc; margin: 10px 0;">
-                            <p style="font-size: 1.2rem;">💨 Você emite: <strong>{{ resultado.emissao_kg }} kg de CO₂</strong></p>
-                            <p style="font-size: 1.2rem;">🌳 Compensação: <strong>{{ resultado.arvores }} árvores/ano</strong></p>
+                        <div class="alert alert-light border border-success border-2 shadow-sm rounded-3">
+                            <h4 class="alert-heading text-success fw-bold text-center mb-3">
+                                <i class="bi bi-check-circle-fill"></i> Resultado
+                            </h4>
+                            
+                            <p class="mb-2">Ao percorrer <strong>{{ resultado.distancia }} km</strong> de <strong>{{ resultado.transporte }}</strong>:</p>
+                            
+                            <div class="row text-center mt-3 g-2">
+                                <div class="col-6">
+                                    <div class="p-3 bg-white rounded shadow-sm border">
+                                        <div class="fs-1">💨</div>
+                                        <div class="fw-bold text-dark">{{ resultado.emissao_kg }} kg</div>
+                                        <div class="small text-muted">CO₂ emitido</div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="p-3 bg-white rounded shadow-sm border">
+                                        <div class="fs-1">🌳</div>
+                                        <div class="fw-bold text-success">{{ resultado.arvores }}</div>
+                                        <div class="small text-muted">Árvores/ano</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     {% endif %}
                 {% endif %}
             </div>
-        </section>
-    </main>
+        </div>
+    </div>
+</div>
 
-    <footer>
-        <p>&copy; 2025 CO₂ Project - Todos os direitos reservados.</p>
-    </footer>
+<style>
+    /* Pequeno ajuste extra para o botão ficar mais interativo */
+    .hover-effect {
+        transition: transform 0.2s;
+    }
+    .hover-effect:hover {
+        transform: translateY(-2px);
+    }
+</style>
 
-</body>
-</html>
+{% endblock %}
