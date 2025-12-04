@@ -1,0 +1,143 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de CO2</title>
+    <link rel="stylesheet" href="{% static 'usuario/css/style.css' %}">
+    
+    <style>
+        /* Estilos específicos para a calculadora */
+        .calc-section {
+            padding: 4rem 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .calc-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        input[type="number"], select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .result-box {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: #e8f5e9; /* Verde bem claro */
+            border-left: 5px solid #2E7D32;
+            border-radius: 5px;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn-calc {
+            width: 100%;
+            background-color: #2E7D32;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn-calc:hover {
+            background-color: #1b5e20;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">CO₂ Project</div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Início</a></li>
+                <li><a href="{% url 'calculadora' %}">Calculadora</a></li>
+                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="calc-section">
+            <div class="calc-card">
+                <h2 style="text-align: center; color: #2E7D32; margin-bottom: 1.5rem;">Calculadora de Emissão Diária</h2>
+                
+                <form method="POST">
+                    {% csrf_token %}
+                    
+                    <div class="form-group">
+                        <label for="distancia">Distância percorrida (km/dia):</label>
+                        <input type="number" name="distancia" id="distancia" step="0.1" required placeholder="Ex: 15.5">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="transporte">Meio de Transporte:</label>
+                        <select name="transporte" id="transporte">
+                            <option value="carro">Carro (Gasolina)</option>
+                            <option value="onibus">Ônibus</option>
+                            <option value="metro">Metrô/Trem</option>
+                            <option value="moto">Motocicleta</option>
+                            <option value="bicicleta">Bicicleta</option>
+                            <option value="a_pe">A pé</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-calc">Calcular Pegada</button>
+                </form>
+
+                {% if resultado %}
+                    {% if resultado.erro %}
+                        <div class="result-box" style="border-left-color: red; background-color: #ffebee;">
+                            <p style="color: red;">{{ resultado.erro }}</p>
+                        </div>
+                    {% else %}
+                        <div class="result-box">
+                            <h3 style="color: #2E7D32; margin-bottom: 10px;">Resultado:</h3>
+                            <p>Ao percorrer <strong>{{ resultado.distancia }} km</strong> de <strong>{{ resultado.transporte }}</strong>:</p>
+                            <hr style="border: 0; border-top: 1px solid #ccc; margin: 10px 0;">
+                            <p style="font-size: 1.2rem;">💨 Você emite: <strong>{{ resultado.emissao_kg }} kg de CO₂</strong></p>
+                            <p style="font-size: 1.2rem;">🌳 Compensação: <strong>{{ resultado.arvores }} árvores/ano</strong></p>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 CO₂ Project - Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
