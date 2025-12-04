@@ -22,7 +22,7 @@ from django.urls.conf import include
 urlpatterns = [
     path("admin/", admin.site.urls),
     # rotas da app 'usuario' (use o prefixo 'usuario/')
-    path('usuario/', include('usuario.urls')),
+    path('', include('usuario.urls')),
     # autenticação pronta do Django (login/logout/password)
     path('accounts/', include('django.contrib.auth.urls')),
 ]
