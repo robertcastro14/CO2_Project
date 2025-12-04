@@ -1,15 +1,15 @@
 /* ================================================== */
-/* BLOCO 1: CÓDIGO ORIGINAL (NÃO ALTERADO) */
+/* CORES E VARIÁVEIS GLOBAIS (ORIGINAIS + CALCULADORA) */
 /* ================================================== */
 
 :root {
-    /* VARIÁVEIS ORIGINAIS */
+    /* VARIÁVEIS ORIGINAIS (Bloco 1) - Usadas para Home Page e Base */
     --primary-color: #2E7D32; /* Verde floresta */
     --secondary-color: #81C784;
     --text-color: #333;
     --bg-color: #f4f4f9;
 
-    /* VARIÁVEIS DO FIGMA (ADICIONADAS E RENOMEADAS PARA NÃO CONFLITAR) */
+    /* VARIÁVEIS DO FIGMA (Bloco 2) - Usadas SOMENTE no escopo #calculator-app */
     --calc-primary-600: #0f5132; 
     --calc-secondary-color: #198754; 
     --calc-card-background: #ffffff;
@@ -21,20 +21,27 @@
     --calc-max-width: 1100px;
 }
 
+/* Reset Básico */
 * {
+    box-sizing: border-box; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Estilo do corpo da página (GLOBAL - Home Page) */
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
+    padding-top: 70px; /* Adicionado para compatibilidade com o menu fixo */
 }
 
-/* Header */
+/* ================================================== */
+/* BLOCO 1: ESTILOS DA PÁGINA INICIAL (MANTIDOS) */
+/* ================================================== */
+
+/* Header ORIGINAL (se usado no home.html) */
 header {
     background-color: var(--primary-color);
     color: white;
@@ -130,29 +137,15 @@ nav a:hover {
 
 /* Footer ORIGINAL */
 footer {
-    background-color: #333; /* Estilo original: fundo cinza */
+    background-color: #333; 
     color: white;
     text-align: center;
     padding: 1.5rem;
     margin-top: auto;
 }
 
-/* FIM DO BLOCO 1 */
-/* ================================================== */
-
-
-/* ================================================== */
-/* BLOCO 2: ESTILOS SCOPED: SOMENTE A CALCULADORA (#calculator-app) */
-/* ================================================== */
-
-/* Sobrescreve apenas o fundo do body para o layout de calculadora, 
-   mas apenas onde o #calculator-app não está. Isso é um estilo de fallback. */
-body {
-    background-color: #f7fff6; /* Fundo simples para todas as páginas */
-    padding-top: 70px; 
-}
+/* Navbar (Sobrescreve o estilo original para compatibilidade com Bootstrap) */
 .navbar-custom {
-    /* Garante que o menu do Bootstrap continue usando as cores do bloco 1 */
     background-color: var(--primary-color) !important;
     position: fixed;
     top: 0;
@@ -161,145 +154,430 @@ body {
     box-shadow: var(--calc-shadow-1);
 }
 
-/* 1. LAYOUT GERAL E FUNDO DA CALCULADORA */
-#calculator-app.wrap {
-    /* Layout de Grid de 2 colunas */
-    display: grid;
-    grid-template-columns: 1fr 420px;
-    gap: 36px;
-    align-items: start;
-    
-    /* Fundo customizado da Calculadora (Figma) */
-    background: linear-gradient(180deg, #eaf7ee 0%, #f7fff6 50%);
-    background-clip: padding-box;
-    
-    width: 100%;
-    max-width: var(--calc-max-width);
-    margin: 0 auto;
-    padding: 36px 20px;
+/* ================================================== */
+/* BLOCO 2: ESTILOS SCOPED: SOMENTE A CALCULADORA (#calculator-app) */
+/* ================================================== */
+
+/* ================================================== */
+/* CORES E VARIÁVEIS GLOBAIS (APENAS DE TEMA) */
+/* ================================================== */
+
+
+
+:root {
+    /* Cores usadas globalmente (NavBar, Footer, Textos) */
+    --primary-color: #0f5132; /* Verde Escuro */
+    --secondary-color: #198754; /* Verde Médio / Botões */
+    --text-color: #052d1b;
+
+    /* Variáveis baseadas no Figma para uso no escopo #calculator-app */
+
+    --calc-primary-600: #0f5132;
+
+    --calc-secondary-color: #198754;
+
+    --calc-card-background: #ffffff;
+
+    --calc-text-color: #052d1b;
+
+    --calc-text-muted: #6b7a6b;
+
+    --calc-shadow-1: 0 8px 30px rgba(6,40,22,0.12);
+
+    --calc-transition: 240ms cubic-bezier(.2,.9,.3,1);
+
+    --calc-radius: 16px;
+
+    --calc-max-width: 1100px;
+
 }
+
+
+
+/* Reset Básico */
+
+* {
+
+    box-sizing: border-box;
+
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+    margin: 0;
+
+    padding: 0;
+
+}
+
+
+
+/* Estilos de Estrutura (GLOBAL: base.html) */
+
+body {
+
+    background-color: #f7fff6; /* Fundo simples e limpo */
+
+    color: var(--text-color);
+
+    padding-top: 70px; /* Espaço para o menu fixo */
+
+}
+
+.navbar-custom {
+
+    background-color: var(--primary-color) !important;
+
+    position: fixed;
+
+    top: 0;
+
+    width: 100%;
+
+    z-index: 1000;
+
+    box-shadow: var(--shadow-1);
+
+}
+
+footer {
+
+    background-color: var(--primary-color);
+
+    color: white;
+
+    text-align: center;
+
+    padding: 1.5rem;
+
+    margin-top: auto;
+
+}
+
+.card {
+
+    background: var(--card-background);
+
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow-1);
+
+    border: 1px solid rgba(10,50,30,0.04);
+
+}
+
+
+
+/* ================================================== */
+
+/* ESTILOS SCOPED: SOMENTE A CALCULADORA (#calculator-app) */
+
+/* ================================================== */
+
+
+
+/* 1. LAYOUT GERAL E FUNDO DA CALCULADORA */
+
+#calculator-app.wrap {
+
+    /* Layout de Grid de 2 colunas */
+
+    display: grid;
+
+    grid-template-columns: 1fr 420px;
+
+    gap: 36px;
+
+    align-items: start;
+
+   
+
+    /* Fundo customizado da Calculadora (Figma) */
+
+    background: linear-gradient(180deg, #eaf7ee 0%, #f7fff6 50%);
+
+    background-clip: padding-box;
+
+   
+
+    width: 100%;
+
+    max-width: var(--calc-max-width);
+
+    margin: 0 auto;
+
+    padding: 36px 20px;
+
+}
+
+
 
 /* 2. COMPONENTES INTERNOS DA CALCULADORA */
 
+
+
 #calculator-app .card {
+
     background: linear-gradient(180deg, var(--calc-card-background), #fbfff9);
+
     border-radius: var(--calc-radius);
+
     padding: 26px;
+
     box-shadow: var(--calc-shadow-1);
+
     border: 1px solid rgba(10,50,30,0.04);
+
 }
+
+
 
 #calculator-app .hero h2 {
+
     color: var(--calc-primary-600);
+
     font-size: 28px;
+
 }
+
 #calculator-app .hero p {
+
     color: var(--calc-text-muted);
+
 }
+
+
 
 /* Formulário e Inputs */
+
 #calculator-app form.calc {
+
     display: grid;
+
     gap: 18px;
+
     margin-top: 12px;
+
 }
+
 #calculator-app label.input-label {
+
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
+
     font-size: 13px;
+
     color: var(--calc-text-muted);
+
 }
-#calculator-app input[type="number"], 
+
+#calculator-app input[type="number"],
+
 #calculator-app select {
+
     -webkit-appearance: none;
+
     width: 100%;
+
     padding: 14px 16px;
+
     border-radius: 12px;
+
     border: 1px solid #d7ead6;
+
     background: linear-gradient(180deg, #fbfffb, #f3fff6);
+
     font-size: 15px;
+
     transition: box-shadow var(--calc-transition), transform var(--calc-transition);
+
 }
-#calculator-app input:focus, 
+
+#calculator-app input:focus,
+
 #calculator-app select:focus {
+
     outline: none;
+
     box-shadow: 0 8px 20px rgba(25, 135, 84, 0.12);
+
     transform: translateY(-2px);
+
 }
+
+
 
 /* Botões */
+
 #calculator-app .btn-row {
+
     display: flex;
+
     gap: 12px;
+
     margin-top: 6px;
+
 }
+
 #calculator-app button.primary {
+
     background: linear-gradient(180deg, var(--calc-secondary-color), var(--calc-primary-600));
+
     color: white;
+
     border: none;
+
     padding: 12px 18px;
+
     border-radius: 12px;
+
     font-weight: 700;
+
     flex: 1;
+
     box-shadow: 0 10px 28px rgba(14, 72, 42, 0.18);
+
     transition: transform var(--calc-transition), box-shadow var(--calc-transition);
+
 }
+
 #calculator-app button.ghost {
+
     background: transparent;
+
     border: 1px solid rgba(10,50,30,0.08);
+
     padding: 12px 18px;
+
     border-radius: 12px;
+
     color: var(--calc-primary-600);
+
 }
+
 #calculator-app button.primary:hover {
+
     transform: translateY(-4px);
+
 }
+
+
 
 /* Resultado Destacado */
+
 #calculator-app .result {
+
     margin-top: 24px;
+
     display: flex;
+
     gap: 18px;
+
     align-items: center;
+
     justify-content: space-between;
+
     padding: 20px;
+
     border-radius: 12px;
+
     background: linear-gradient(90deg, #f6fff7, #eefbf0);
+
     border: 1px solid #e1f2e3;
-}
-#calculator-app .result .value {
-    font-size: 32px;
-    font-weight: 800;
-    color: var(--calc-primary-600);
-}
-#calculator-app .result .meta {
-    color: var(--calc-text-muted);
-    font-size: 13px;
+
 }
 
-/* Coluna de Recomendações (Aside) */
-#calculator-app .aside {
-    position: sticky;
-    top: 100px;
-}
-#calculator-app .mode {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    padding: 12px;
-    border-radius: 12px;
-    transition: background var(--calc-transition), transform var(--calc-transition);
-    border: 1px solid rgba(6,40,20,0.02);
-    background: linear-gradient(180deg, #fff, #fcfff9);
-}
-#calculator-app .mode h4 {
+#calculator-app .result .value {
+
+    font-size: 32px;
+
+    font-weight: 800;
+
     color: var(--calc-primary-600);
+
 }
-#calculator-app .mode p {
+
+#calculator-app .result .meta {
+
     color: var(--calc-text-muted);
+
     font-size: 13px;
+
 }
+
+
+
+/* Coluna de Recomendações (Aside) */
+
+#calculator-app .aside {
+
+    position: sticky;
+
+    top: 100px;
+
+}
+
+#calculator-app .mode {
+
+    display: flex;
+
+    gap: 12px;
+
+    align-items: center;
+
+    padding: 12px;
+
+    border-radius: 12px;
+
+    transition: background var(--calc-transition), transform var(--calc-transition);
+
+    border: 1px solid rgba(6,40,20,0.02);
+
+    background: linear-gradient(180deg, #fff, #fcfff9);
+
+}
+
+#calculator-app .mode h4 {
+
+    color: var(--calc-primary-600);
+
+}
+
+#calculator-app .mode p {
+
+    color: var(--calc-text-muted);
+
+    font-size: 13px;
+
+}
+
 #calculator-app .mode.best {
+
     background: linear-gradient(90deg, #eaf9ee, #e8fff1);
-    border-color: rgba(25
+
+    border-color: rgba(25, 135, 84, 0.12);
+
+    transform: translateY(-2px);
+
+}
+
+#calculator-app .small {
+
+    font-size: 13px;
+
+    color: var(--calc-text-muted);
+
+}
+
+
+
+/* Responsividade */
+
+@media (max-width:980px){
+
+    #calculator-app.wrap{grid-template-columns:1fr; padding-bottom:120px; gap: 20px;}
+
+    #calculator-app .aside{position:relative;top:auto}
+
+}

@@ -43,7 +43,7 @@
                 </div>
                 <div style="text-align:right">
                     <div class="small">Compensação anual</div>
-                    <div style="font-weight:700;color:var(--primary-color)">{{ resultado.arvores }} Árvores</div>
+                    <div style="font-weight:700; color: var(--calc-primary-600);">{{ resultado.arvores }} Árvores</div>
                 </div>
             </div>
             {% endif %}
@@ -53,26 +53,26 @@
 
     <aside class="aside">
         <div class="card card-aside">
-            <h3 style="margin:0;color:var(--primary-color)">Recomendações rápidas</h3>
-            <p class="small" style="margin-top:6px">Para trajetos <strong>até 3 km</strong>, prefira bicicleta ou caminhada. Para 3–15 km, priorize transporte público ou bicicleta elétrica.</p>
+            <h3 style="margin:0;color:var(--calc-primary-600)">Recomendações rápidas</h3>
+            <p class="small" style="margin-top:6px">Para trajetos <strong>até 3 km</strong>, prefira bicicleta ou caminhada.</p>
 
             <div class="modes">
                 <div class="mode best">
-                    <i class="bi bi-bicycle" style="font-size: 32px; color: var(--secondary-color);"></i>
+                    <i class="bi bi-bicycle" style="font-size: 32px; color: var(--calc-secondary-color);"></i>
                     <div><h4>Bicicleta — 0 kg</h4><p class="small">Melhor para curtas distâncias</p></div>
                 </div>
 
                 <div class="mode">
-                    <i class="bi bi-train-front" style="font-size: 32px; color: var(--secondary-color);"></i>
+                    <i class="bi bi-train-front" style="font-size: 32px; color: var(--calc-secondary-color);"></i>
                     <div><h4>Transporte Público — baixo</h4><p class="small">Eficiente em lotações altas</p></div>
                 </div>
 
                 <div style="display:flex;justify-content:center;margin-top:8px">
-                    <a href="{% url 'historico' %}" class="ghost" style="text-decoration:none;padding:8px 12px;border-radius:10px">Ver Meu Histórico</a>
+                    <a href="{% url 'historico' %}" class="ghost" style="text-decoration:none;padding:8px 12px;border-radius:10px; color: var(--calc-primary-600);">Ver Meu Histórico</a>
                 </div>
             </div>
         </div>
     </aside>
 
 </main>
-{% endblock %}
+{% endblock content %}
