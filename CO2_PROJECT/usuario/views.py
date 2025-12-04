@@ -1,4 +1,8 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+
+# View da Página Inicial (Home)
+@login_required
 
 # View da Página Inicial (Home)
 def home(request):
