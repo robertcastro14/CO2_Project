@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <h1 class="text-success fw-bold mb-4">
+            <i class="bi bi-clock-history"></i> Meu Histórico de Emissões
+        </h1>
+        
+        <div class="card shadow-sm mb-4">
+            <div class="card-body bg-light rounded">
+                <div class="row text-center">
+                    <div class="col-md-6 border-end">
+                        <h4 class="text-muted mb-1">Total de CO₂ Emitido (acumulado)</h4>
+                        <p class="fs-2 fw-bold text-danger">{{ total_co2 }} kg</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h4 class="text-muted mb-1">Total de Compensação Necessária</h4>
+                        <p class="fs-2 fw-bold text-success">{{ total_arvores }} Árvores/ano</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if registros %}
+            <h3 class="mb-3 text-secondary">Detalhes das Últimas Viagens</h3>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead class="table-success">
+                        <tr>
+                            <th>Data</th>
+                            <th>Transporte</th>
+                            <th>Distância (km)</th>
+                            <th>Emissão (kg CO₂)</th>
+                            <th>Árvores/ano</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for registro in registros %}
+                        <tr>
+                            <td>{{ registro.data_calculo|date:"d/m/Y H:i" }}</td>
+                            <td>
+                                {% if registro.transporte == 'carro' %}🚗 Carro{% elif registro.transporte == 'onibus' %}🚌 Ônibus{% elif registro.transporte == 'metro' %}🚇 Metrô{% elif registro.transporte == 'moto' %}🏍️ Motocicleta{% elif registro.transporte == 'bicicleta' %}🚲 Bicicleta{% else %}🚶 A Pé{% endif %}
+                            </td>
+                            <td>{{ registro.distancia }}</td>
+                            <td class="fw-bold text-danger">{{ registro.co2_emitido }}</td>
+                            <td class="text-success">{{ registro.arvores }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="alert alert-info text-center mt-5" role="alert">
+                <h4 class="alert-heading">Nenhum cálculo encontrado!</h4>
+                <p>Use a <a href="{% url 'calculadora' %}" class="alert-link">calculadora</a> para começar a registrar sua pegada de carbono.</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

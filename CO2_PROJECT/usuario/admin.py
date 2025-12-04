@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Pessoa
+from .models import RegistroCalculo
 
-# Register the Pessoa model so it appears in the Django admin
-admin.site.register(Pessoa)
+# Registra a nova classe de modelo no painel de administração
+admin.site.register(RegistroCalculo)

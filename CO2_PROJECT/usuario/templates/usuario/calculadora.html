@@ -2,11 +2,10 @@
 {% load static %}
 
 {% block content %}
-
 <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
         
-        <div class="card shadow-lg border-0 rounded-4">
+        <div class="card calc-card-custom border-0 rounded-4">
             <div class="card-header bg-success text-white text-center py-4 rounded-top-4">
                 <h2 class="mb-0 fw-bold"><i class="bi bi-calculator"></i> EcoRota</h2>
                 <p class="mb-0 opacity-75">Calculadora de Emissão Diária</p>
@@ -16,38 +15,38 @@
                 <form method="POST">
                     {% csrf_token %}
                     
-                    <div class="mb-4">
-                        <label for="distancia" class="form-label fw-bold text-secondary">
+                    <div class="mb-4 form-group-custom">
+                        <label for="distancia" class="form-label fw-bold">
                             <i class="bi bi-geo-alt-fill"></i> Distância percorrida (km/dia):
                         </label>
-                        <input type="number" name="distancia" id="distancia" step="0.1" 
-                               class="form-control form-control-lg bg-light" 
+                        <input type="number" step="0.1" name="distancia" id="distancia"
+                               class="form-control form-control-lg input-custom" 
                                placeholder="Ex: 15.5" required>
                     </div>
 
-                    <div class="mb-4">
-                        <label for="transporte" class="form-label fw-bold text-secondary">
+                    <div class="mb-4 form-group-custom">
+                        <label for="transporte" class="form-label fw-bold">
                             <i class="bi bi-bus-front-fill"></i> Meio de Transporte:
                         </label>
-                        <select name="transporte" id="transporte" class="form-select form-select-lg bg-light">
+                        <select name="transporte" id="transporte" class="form-select form-select-lg input-custom">
                             <option value="carro">🚗 Carro (Gasolina)</option>
                             <option value="onibus">🚌 Ônibus</option>
                             <option value="metro">🚇 Metrô/Trem</option>
                             <option value="moto">🏍️ Motocicleta</option>
                             <option value="bicicleta">🚲 Bicicleta</option>
-                            <option value="a_pe">🚶 A pé</option>
+                            <option value="caminhada">🚶 A pé (Caminhada)</option>
                         </select>
                     </div>
 
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-success btn-lg py-3 fw-bold shadow-sm hover-effect">
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-calc-custom btn-lg py-3 fw-bold">
                             Calcular Pegada de Carbono
                         </button>
                     </div>
                 </form>
 
                 {% if resultado %}
-                    <hr class="my-4">
+                    <hr class="my-5">
                     
                     {% if resultado.erro %}
                         <div class="alert alert-danger d-flex align-items-center" role="alert">
@@ -57,25 +56,25 @@
                             </div>
                         </div>
                     {% else %}
-                        <div class="alert alert-light border border-success border-2 shadow-sm rounded-3">
-                            <h4 class="alert-heading text-success fw-bold text-center mb-3">
-                                <i class="bi bi-check-circle-fill"></i> Resultado
+                        <div class="alert result-box-custom text-center py-4">
+                            <h4 class="alert-heading text-success fw-bold mb-3">
+                                <i class="bi bi-check-circle-fill"></i> Impacto Calculado
                             </h4>
                             
-                            <p class="mb-2">Ao percorrer <strong>{{ resultado.distancia }} km</strong> de <strong>{{ resultado.transporte }}</strong>:</p>
+                            <p class="mb-3 text-muted">Viagem de <strong>{{ resultado.distancia }} km</strong> por <strong>{{ resultado.transporte }}</strong>:</p>
                             
-                            <div class="row text-center mt-3 g-2">
+                            <div class="row text-center mt-3 g-3">
                                 <div class="col-6">
-                                    <div class="p-3 bg-white rounded shadow-sm border">
-                                        <div class="fs-1">💨</div>
-                                        <div class="fw-bold text-dark">{{ resultado.emissao_kg }} kg</div>
-                                        <div class="small text-muted">CO₂ emitido</div>
+                                    <div class="p-3 box-metric">
+                                        <div class="fs-1 text-danger">💨</div>
+                                        <div class="fw-bold fs-4">{{ resultado.emissao_kg }} kg</div>
+                                        <div class="small text-muted">CO₂ Emitido</div>
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <div class="p-3 bg-white rounded shadow-sm border">
-                                        <div class="fs-1">🌳</div>
-                                        <div class="fw-bold text-success">{{ resultado.arvores }}</div>
+                                    <div class="p-3 box-metric">
+                                        <div class="fs-1 text-success">🌳</div>
+                                        <div class="fw-bold fs-4">{{ resultado.arvores }}</div>
                                         <div class="small text-muted">Árvores/ano</div>
                                     </div>
                                 </div>
@@ -89,13 +88,58 @@
 </div>
 
 <style>
-    /* Pequeno ajuste extra para o botão ficar mais interativo */
-    .hover-effect {
-        transition: transform 0.2s;
+    /* ------------------------------------- */
+    /* ESTILOS PERSONALIZADOS DA CALCULADORA */
+    /* ------------------------------------- */
+    
+    /* Cartão Principal */
+    .calc-card-custom {
+        box-shadow: 0 10px 30px rgba(0, 50, 0, 0.15); /* Sombra verde mais suave */
+        border: 1px solid #e8f5e9;
     }
-    .hover-effect:hover {
+
+    /* Campos de Input e Select */
+    .input-custom {
+        border-radius: 8px;
+        border: 1px solid #d4edda; /* Borda levemente verde */
+        background-color: #f8fcf8;
+        transition: border-color 0.3s;
+    }
+
+    .input-custom:focus {
+        border-color: #4CAF50; /* Verde vibrante ao focar */
+        box-shadow: 0 0 0 0.25rem rgba(46, 125, 50, 0.25); /* Sombra de foco verde */
+        background-color: white;
+    }
+
+    /* Botão Calcular */
+    .btn-calc-custom {
+        background-color: #2E7D32; /* Verde folha */
+        border-color: #2E7D32;
+        color: white;
+        transition: background-color 0.2s, transform 0.2s;
+        border-radius: 10px;
+    }
+
+    .btn-calc-custom:hover {
+        background-color: #1b5e20; /* Verde escuro no hover */
+        border-color: #1b5e20;
         transform: translateY(-2px);
     }
-</style>
+    
+    /* Caixas de Métrica (Resultado) */
+    .result-box-custom {
+        background-color: #e8f5e9; /* Fundo verde claríssimo do resultado */
+        border-radius: 10px;
+        border: none;
+    }
 
+    .box-metric {
+        background-color: white;
+        border-radius: 8px;
+        padding: 1rem !important;
+        border: 1px solid #d4edda;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+</style>
 {% endblock %}

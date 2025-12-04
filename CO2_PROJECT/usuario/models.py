@@ -1,13 +1,20 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-# Modelo de exemplo para armazenar contatos/pessoas (adaptável ao tema CO2)
-class Pessoa(models.Model):
-	id = models.AutoField(primary_key=True)
-	nome = models.CharField(max_length=100, help_text='Entre o nome')
-	idade = models.IntegerField(help_text='Entre a idade', null=True, blank=True)
-	salario = models.DecimalField(help_text='Entre o salário', decimal_places=2, max_digits=10, null=True, blank=True)
-	email = models.EmailField(help_text='Informe o email', max_length=254, null=True, blank=True)
-	dtNasc = models.DateField(help_text='Nascimento no formato YYYY-MM-DD', verbose_name='Data de nascimento', null=True, blank=True)
+class RegistroCalculo(models.Model):
+    # Relaciona o cálculo ao usuário que o fez
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    
+    # Dados do cálculo
+    distancia = models.FloatField(verbose_name="Distância (km)")
+    transporte = models.CharField(max_length=50, verbose_name="Meio de Transporte")
+    
+    # Resultados
+    co2_emitido = models.FloatField(verbose_name="CO2 Emitido (kg)")
+    arvores = models.FloatField(verbose_name="Árvores para compensar")
+    
+    # Data automática (guarda o momento exato do cálculo)
+    data_calculo = models.DateTimeField(auto_now_add=True, verbose_name="Data do Cálculo")
 
-	def __str__(self):
-		return f"{self.nome}"
+    def __str__(self):
+        return f"{self.usuario.username} - {self.transporte} - {self.co2_emitido}kg"
