@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto CO2 - Home</title>
+    <link rel="stylesheet" href="{% static 'usuario/css/style.css' %}">
+</head>
+<body>
+
+    <header>
+        <div class="logo">CO₂ Project</div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Início</a></li>
+                
+                <li><a href="{% url 'calculadora' %}">Calculadora</a></li>
+                
+                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Calcule sua Pegada de Carbono</h1>
+            <p>Entenda o impacto das suas escolhas de transporte no meio ambiente e descubra como reduzi-lo.</p>
+            
+            <a href="{% url 'calculadora' %}" class="btn-cta">Começar Agora</a>
+        </section>
+
+        <section class="features">
+            <div class="card">
+                <h3>🚗 Calculadora</h3>
+                <p>Compare as emissões entre carro, ônibus, metrô e bicicleta.</p>
+            </div>
+            <div class="card">
+                <h3>📉 Monitoramento</h3>
+                <p>Acompanhe suas emissões mensais e visualize gráficos.</p>
+            </div>
+            <div class="card">
+                <h3>🌱 Dicas Verdes</h3>
+                <p>Aprenda formas simples de reduzir seu impacto ambiental.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 CO₂ Project - Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>

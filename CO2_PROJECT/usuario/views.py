@@ -1,21 +1,47 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.views import View
-from .models import Pessoa
+from django.shortcuts import render
 
+# View da Página Inicial (Home)
+def home(request):
+    return render(request, 'usuario/home.html')
 
-class ContatoListView(View):
-	def get(self, request, *args, **kwargs):
-		pessoas = Pessoa.objects.all()
-		contexto = { 'pessoas': pessoas }
-		return render(request, 'usuario/listaContatos.html', contexto)
+# View da Calculadora (Lógica de Cálculo)
+def calculadora(request):
+    resultado = None
+    
+    if request.method == 'POST':
+        try:
+            # Pega os dados enviados pelo formulário HTML
+            distancia = float(request.POST.get('distancia'))
+            transporte = request.POST.get('transporte')
+            
+            # Fatores de emissão (em g CO2/km)
+            fatores = {
+                'carro': 192,
+                'onibus': 68,
+                'metro': 35,
+                'trem': 35,
+                'moto': 103,
+                'bicicleta': 0,
+                'a_pe': 0
+            }
+            
+            # Realiza o cálculo
+            fator = fatores.get(transporte, 0)
+            emissao_g = distancia * fator
+            emissao_kg = emissao_g / 1000
+            
+            # Estimativa de árvores (1 árvore ~ 22kg CO2/ano)
+            arvores = emissao_kg / 22 
+            
+            # Prepara os dados para enviar de volta para a tela
+            resultado = {
+                'emissao_kg': round(emissao_kg, 2),
+                'arvores': round(arvores, 1),
+                'distancia': distancia,
+                'transporte': transporte.capitalize()
+            }
+            
+        except (ValueError, TypeError):
+            resultado = {'erro': 'Por favor, insira valores válidos.'}
 
-
-def buscaUmContato(request):
-	return render(request, 'usuario/buscaUmContato.html')
-
-
-def respostaBuscaUmContato(request):
-	nome = request.GET.get('nome', '')
-	pessoas = Pessoa.objects.all().filter(nome__icontains=nome)
-	contexto = { 'pessoas': pessoas }
-	return render(request, 'usuario/listaContatos.html', contexto)
+    return render(request, 'usuario/calculadora.html', {'resultado': resultado})

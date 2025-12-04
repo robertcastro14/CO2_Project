@@ -1,10 +1,9 @@
+from django.contrib import admin
 from django.urls import path
-from . import views
-
-app_name = 'usuario'
+from usuario import views  # Importando as views que você acabou de criar
 
 urlpatterns = [
-    path('', views.ContatoListView.as_view(), name='lista-contatos'),
-    path('busca/', views.buscaUmContato, name='busca-contato'),
-    path('retorno-busca/', views.respostaBuscaUmContato, name='mostra-contato'),
+    path('admin/', admin.site.urls),
+    path('', views.home, name='home'),               # Rota da Página Inicial
+    path('calculadora/', views.calculadora, name='calculadora'), # Rota da Calculadora
 ]
