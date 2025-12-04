@@ -2,144 +2,77 @@
 {% load static %}
 
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-md-8 col-lg-6">
-        
-        <div class="card calc-card-custom border-0 rounded-4">
-            <div class="card-header bg-success text-white text-center py-4 rounded-top-4">
-                <h2 class="mb-0 fw-bold"><i class="bi bi-calculator"></i> EcoRota</h2>
-                <p class="mb-0 opacity-75">Calculadora de Emissão Diária</p>
+<main id="calculator-app" class="wrap" role="main" aria-labelledby="calc-title">
+    
+    <section class="card hero" aria-labelledby="calc-title">
+        <h2 id="calc-title">Calcule sua emissão de CO₂</h2>
+        <p class="small">Insira a distância e escolha o meio — a estimativa é baseada em fatores médios por km.</p>
+
+        <form class="calc" method="POST">
+            {% csrf_token %}
+            
+            <div>
+                <label class="input-label" for="distance">Distância (km)
+                    <span class="small">Ex.: 12.5</span>
+                </label>
+                <input id="distance" name="distancia" type="number" min="0" step="0.1" inputmode="decimal" placeholder="Ex: 12.5" required />
             </div>
 
-            <div class="card-body p-5">
-                <form method="POST">
-                    {% csrf_token %}
-                    
-                    <div class="mb-4 form-group-custom">
-                        <label for="distancia" class="form-label fw-bold">
-                            <i class="bi bi-geo-alt-fill"></i> Distância percorrida (km/dia):
-                        </label>
-                        <input type="number" step="0.1" name="distancia" id="distancia"
-                               class="form-control form-control-lg input-custom" 
-                               placeholder="Ex: 15.5" required>
-                    </div>
+            <div>
+                <label class="input-label" for="mode">Meio de transporte</label>
+                <select id="mode" name="transporte" required>
+                    <option value="">— selecione —</option>
+                    <option value="bicicleta">🚲 Bicicleta</option>
+                    <option value="caminhada">🚶 A pé (Caminhada)</option>
+                    <option value="onibus">🚌 Transporte Público (Ônibus/Metrô)</option>
+                    <option value="moto">🏍️ Moto</option>
+                    <option value="carro">🚗 Carro (Combustão)</option>
+                </select>
+            </div>
 
-                    <div class="mb-4 form-group-custom">
-                        <label for="transporte" class="form-label fw-bold">
-                            <i class="bi bi-bus-front-fill"></i> Meio de Transporte:
-                        </label>
-                        <select name="transporte" id="transporte" class="form-select form-select-lg input-custom">
-                            <option value="carro">🚗 Carro (Gasolina)</option>
-                            <option value="onibus">🚌 Ônibus</option>
-                            <option value="metro">🚇 Metrô/Trem</option>
-                            <option value="moto">🏍️ Motocicleta</option>
-                            <option value="bicicleta">🚲 Bicicleta</option>
-                            <option value="caminhada">🚶 A pé (Caminhada)</option>
-                        </select>
-                    </div>
+            <div class="btn-row">
+                <button type="submit" class="primary" aria-live="polite">Calcular</button>
+                <button type="reset" class="ghost">Limpar</button>
+            </div>
+            
+            {% if resultado %}
+            <div class="result" role="status" aria-atomic="true">
+                <div>
+                    <div class="small">Emissão estimada</div>
+                    <div class="value">{{ resultado.emissao_kg }} kg CO₂</div>
+                </div>
+                <div style="text-align:right">
+                    <div class="small">Compensação anual</div>
+                    <div style="font-weight:700;color:var(--primary-color)">{{ resultado.arvores }} Árvores</div>
+                </div>
+            </div>
+            {% endif %}
+            
+        </form>
+    </section>
 
-                    <div class="d-grid mt-4">
-                        <button type="submit" class="btn btn-calc-custom btn-lg py-3 fw-bold">
-                            Calcular Pegada de Carbono
-                        </button>
-                    </div>
-                </form>
+    <aside class="aside">
+        <div class="card card-aside">
+            <h3 style="margin:0;color:var(--primary-color)">Recomendações rápidas</h3>
+            <p class="small" style="margin-top:6px">Para trajetos <strong>até 3 km</strong>, prefira bicicleta ou caminhada. Para 3–15 km, priorize transporte público ou bicicleta elétrica.</p>
 
-                {% if resultado %}
-                    <hr class="my-5">
-                    
-                    {% if resultado.erro %}
-                        <div class="alert alert-danger d-flex align-items-center" role="alert">
-                            <i class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2"></i>
-                            <div>
-                                {{ resultado.erro }}
-                            </div>
-                        </div>
-                    {% else %}
-                        <div class="alert result-box-custom text-center py-4">
-                            <h4 class="alert-heading text-success fw-bold mb-3">
-                                <i class="bi bi-check-circle-fill"></i> Impacto Calculado
-                            </h4>
-                            
-                            <p class="mb-3 text-muted">Viagem de <strong>{{ resultado.distancia }} km</strong> por <strong>{{ resultado.transporte }}</strong>:</p>
-                            
-                            <div class="row text-center mt-3 g-3">
-                                <div class="col-6">
-                                    <div class="p-3 box-metric">
-                                        <div class="fs-1 text-danger">💨</div>
-                                        <div class="fw-bold fs-4">{{ resultado.emissao_kg }} kg</div>
-                                        <div class="small text-muted">CO₂ Emitido</div>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="p-3 box-metric">
-                                        <div class="fs-1 text-success">🌳</div>
-                                        <div class="fw-bold fs-4">{{ resultado.arvores }}</div>
-                                        <div class="small text-muted">Árvores/ano</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    {% endif %}
-                {% endif %}
+            <div class="modes">
+                <div class="mode best">
+                    <i class="bi bi-bicycle" style="font-size: 32px; color: var(--secondary-color);"></i>
+                    <div><h4>Bicicleta — 0 kg</h4><p class="small">Melhor para curtas distâncias</p></div>
+                </div>
+
+                <div class="mode">
+                    <i class="bi bi-train-front" style="font-size: 32px; color: var(--secondary-color);"></i>
+                    <div><h4>Transporte Público — baixo</h4><p class="small">Eficiente em lotações altas</p></div>
+                </div>
+
+                <div style="display:flex;justify-content:center;margin-top:8px">
+                    <a href="{% url 'historico' %}" class="ghost" style="text-decoration:none;padding:8px 12px;border-radius:10px">Ver Meu Histórico</a>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+    </aside>
 
-<style>
-    /* ------------------------------------- */
-    /* ESTILOS PERSONALIZADOS DA CALCULADORA */
-    /* ------------------------------------- */
-    
-    /* Cartão Principal */
-    .calc-card-custom {
-        box-shadow: 0 10px 30px rgba(0, 50, 0, 0.15); /* Sombra verde mais suave */
-        border: 1px solid #e8f5e9;
-    }
-
-    /* Campos de Input e Select */
-    .input-custom {
-        border-radius: 8px;
-        border: 1px solid #d4edda; /* Borda levemente verde */
-        background-color: #f8fcf8;
-        transition: border-color 0.3s;
-    }
-
-    .input-custom:focus {
-        border-color: #4CAF50; /* Verde vibrante ao focar */
-        box-shadow: 0 0 0 0.25rem rgba(46, 125, 50, 0.25); /* Sombra de foco verde */
-        background-color: white;
-    }
-
-    /* Botão Calcular */
-    .btn-calc-custom {
-        background-color: #2E7D32; /* Verde folha */
-        border-color: #2E7D32;
-        color: white;
-        transition: background-color 0.2s, transform 0.2s;
-        border-radius: 10px;
-    }
-
-    .btn-calc-custom:hover {
-        background-color: #1b5e20; /* Verde escuro no hover */
-        border-color: #1b5e20;
-        transform: translateY(-2px);
-    }
-    
-    /* Caixas de Métrica (Resultado) */
-    .result-box-custom {
-        background-color: #e8f5e9; /* Fundo verde claríssimo do resultado */
-        border-radius: 10px;
-        border: none;
-    }
-
-    .box-metric {
-        background-color: white;
-        border-radius: 8px;
-        padding: 1rem !important;
-        border: 1px solid #d4edda;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    }
-</style>
+</main>
 {% endblock %}
