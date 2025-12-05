@@ -21,8 +21,8 @@ from django.urls.conf import include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("meuTema/", include("nomeRelativoAoMeuTema.urls")),
-    path("usuario/", include("usuario.urls")),
+    # rotas da app 'usuario' (use o prefixo 'usuario/')
+    path('', include('usuario.urls')),
+    # autenticação pronta do Django (login/logout/password)
     path('accounts/', include('django.contrib.auth.urls')),
-    path('nomeRelativoAoMeuTema/', include('nomeRelativoAoMeuTema.urls')),
 ]

@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Lista Contatos</title>
+<link rel="stylesheet" href="{% static 'usuario/css/estilo.css' %}">
+</head>
+<body>
+  <h1>Lista de Contatos</h1>
+  <a href="{% url 'usuario:busca-contato' %}">Buscar contato</a>
+  <table border="1">
+    <tr><th>Nome</th><th>Idade</th><th>Salário</th><th>Email</th></tr>
+    {% for pessoa in pessoas %}
+      <tr>
+        <td>{{ pessoa.nome }}</td>
+        <td>{{ pessoa.idade }}</td>
+        <td>{{ pessoa.salario }}</td>
+        <td>{{ pessoa.email }}</td>
+      </tr>
+    {% empty %}
+      <tr>
+        <th colspan="4">Ainda não tem contatos cadastrados</th>
+      </tr>
+    {% endfor %}
+  </table>
+</body>
+</html>
