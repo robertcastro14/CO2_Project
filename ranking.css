@@ -1,0 +1,197 @@
+/* ---------- GLOBAL ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #e8f5e9, #f1f8f6, #e0f7fa);
+  min-height: 100vh;
+  padding: 50px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ---------- BACKGROUND EFFECTS ---------- */
+.bg-blur-circle,
+.bg-blur-circle2 {
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  filter: blur(180px);
+  opacity: 0.6;
+  z-index: -1;
+}
+
+.bg-blur-circle {
+  background: #92f7c1;
+  top: -100px;
+  left: -120px;
+}
+
+.bg-blur-circle2 {
+  background: #a0e9ff;
+  bottom: -160px;
+  right: -130px;
+}
+
+/* ---------- HEADER ---------- */
+h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #0f2f23;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.07);
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #467a68;
+  margin-bottom: 40px;
+}
+
+/* ---------- FILTERS ---------- */
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.filters button {
+  padding: 12px 22px;
+  border-radius: 14px;
+  border: none;
+  background: rgba(255,255,255,0.5);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #244c3c;
+  transition: 0.2s;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+}
+
+.filters button.active {
+  background: #4ade80;
+  color: white;
+  box-shadow: 0 4px 20px rgba(74,222,128,0.6);
+}
+
+.filters button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* ---------- CARD GERAL ---------- */
+.ranking-card {
+  width: 100%;
+  max-width: 880px;
+  padding: 25px;
+  background: rgba(255,255,255,0.7);
+  border-radius: 30px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+}
+
+/* ---------- ITEM ---------- */
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 20px;
+  margin-bottom: 14px;
+  background: white;
+  border-radius: 18px;
+  border: 1px solid #e4f2e9;
+  transition: 0.25s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.posicao {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #244c3c;
+  width: 40px;
+  text-align: center;
+}
+
+/* ---------- AVATARS ---------- */
+.avatar {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: #d1f1df;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #12261d;
+}
+
+.gold {
+  background: linear-gradient(135deg, #ffdd55, #f4c542);
+  color: #5b4400;
+}
+
+.silver {
+  background: linear-gradient(135deg, #e6e6e6, #cfd1d6);
+  color: #3a3a3a;
+}
+
+.bronze {
+  background: linear-gradient(135deg, #d9a974, #c68642);
+  color: #5a3715;
+}
+
+.me-avatar {
+  background: linear-gradient(135deg, #4ade80, #22c55e);
+  color: white;
+  box-shadow: 0 0 15px rgba(34,197,94,0.5);
+}
+
+/* ---------- TEXT INFO ---------- */
+.info .name {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #183b2b;
+}
+
+.info .city {
+  font-size: 0.9rem;
+  color: #618073;
+}
+
+/* ---------- CO2 ---------- */
+.co2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1ca64c;
+}
+
+/* ---------- VOCÊ ---------- */
+.me {
+  border: 2px solid #22c55e;
+  background: #f1fff5;
+  box-shadow: 0 0 18px rgba(22,163,74,0.25);
+  transform: scale(1.02);
+}
