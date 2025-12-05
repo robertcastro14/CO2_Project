@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dados de Emissões por Modal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #eef5f2;
+      color: #2b3a42;
+    }
+    header {
+      background: #22577a;
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #22577a;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #ccc;
+      text-align: left;
+    }
+    th {
+      background: #ddeff0;
+      color: #1b4965;
+    }
+    tr:hover {
+      background: #f1f9f8;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #22577a;
+      color: white;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Dados de Emissões por Modal de Transporte</h1>
+    <p>Informações em g de CO₂ emitidos por passageiro por quilômetro.</p>
+  </header>
+
+  <div class="container">
+    <h2>Tabela de Emissões</h2>
+    <p>A tabela abaixo apresenta dados estimados obtidos de fontes ambientais e estudos de mobilidade urbana.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Modal</th>
+          <th>Emissão (g CO₂ / km)</th>
+          <th>Observação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Bicicleta</td>
+          <td>0</td>
+          <td>Modal totalmente limpo; zero emissões diretas.</td>
+        </tr>
+        <tr>
+          <td>Caminhada</td>
+          <td>0</td>
+          <td>Zero emissões e extremamente saudável.</td>
+        </tr>
+        <tr>
+          <td>Patinete Elétrico</td>
+          <td>20–30</td>
+          <td>Baixa emissão; depende da matriz elétrica.</td>
+        </tr>
+        <tr>
+          <td>Metrô / Trem</td>
+          <td>40–60</td>
+          <td>Alta eficiência energética; lotação reduz emissões por pessoa.</td>
+        </tr>
+        <tr>
+          <td>Ônibus</td>
+          <td>80–100</td>
+          <td>Boas emissões por passageiro devido ao compartilhamento.</td>
+        </tr>
+        <tr>
+          <td>Carro (Gasolina)</td>
+          <td>180–250</td>
+          <td>Um dos mais emissores, especialmente com 1 passageiro.</td>
+        </tr>
+        <tr>
+          <td>Moto</td>
+          <td>100–130</td>
+          <td>Emissões moderadas, porém ainda elevadas por passageiro.</td>
+        </tr>
+        
+      </tbody>
+    </table>
+
+    <h2>Impacto Ambiental dos Modais</h2>
+    <p>A seguir estão explicações educativas que ajudam a compreender como cada meio de transporte influencia o meio ambiente:</p>
+
+    <ul>
+      <li><strong>Bicicleta e Caminhada:</strong> Não geram emissões de CO₂ e contribuem para a saúde física. São as opções mais sustentáveis para deslocamentos curtos.</li>
+      <li><strong>Patinete Elétrico:</strong> Emite pouco CO₂, mas depende da eletricidade. Quanto mais limpa a matriz energética, mais sustentável o modal.</li>
+      <li><strong>Metrô / Trem:</strong> Altamente eficiente, transporta muitas pessoas simultaneamente, reduzindo emissões por passageiro.</li>
+      <li><strong>Ônibus:</strong> Mesmo emitindo mais que o metrô, ainda é vantajoso pela capacidade de transportar vários passageiros, diminuindo emissões individuais.</li>
+      <li><strong>Carro a Gasolina:</strong> Alto consumo e uso individualizado aumentam muito as emissões por pessoa. Compartilhamento e direção consciente ajudam a reduzir impactos.</li>
+      <li><strong>Moto:</strong> Embora consuma menos combustível que carros, ainda emite quantidades significativas e geralmente transporta apenas uma pessoa.</li>
+      
+    </ul>
+  </div>
+
+  <footer>
+    <p>© 2025 Projeto Transporte Sustentável</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,147 @@
+/* =============================
+   GLOBAL
+============================= */
+:root {
+    --green-1: #0f5132;
+    --green-2: #146c43;
+    --green-3: #198754;
+    --green-4: #e8f5ee;
+    --green-5: #f4fbf7;
+    --shadow-1: rgba(0,0,0,0.07);
+    --shadow-2: rgba(0,0,0,0.15);
+    --radius: 22px;
+    --transition: 0.25s ease;
+    font-family: "Inter", sans-serif;
+}
+
+body {
+    margin: 0;
+    background: var(--green-4);
+    color: #222;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* =============================
+   HEADER
+============================= */
+header {
+    width: 100%;
+    padding: 30px 6%;
+    background: linear-gradient(135deg, var(--green-1), var(--green-2));
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 4px 18px var(--shadow-2);
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+/* =============================
+   CONTAINER
+============================= */
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 40px auto;
+    background: white;
+    padding: 40px;
+    border-radius: var(--radius);
+    box-shadow: 0 8px 30px var(--shadow-1);
+    animation: fadeUp 0.6s ease forwards;
+    opacity: 0;
+}
+
+.container h2 {
+    color: var(--green-1);
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 18px;
+}
+
+/* =============================
+   TABLE
+============================= */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+    background: var(--green-5);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 4px 20px var(--shadow-1);
+}
+
+th {
+    background: var(--green-2);
+    color: white;
+    padding: 18px;
+    text-align: left;
+    font-size: 1.1rem;
+}
+
+td {
+    padding: 16px;
+    border-bottom: 1px solid var(--green-4);
+    font-size: 1rem;
+}
+
+tr:hover td {
+    background: var(--green-4);
+    transition: var(--transition);
+}
+
+/* =============================
+   IMPACT LIST
+============================= */
+ul {
+    margin-top: 30px;
+    background: var(--green-5);
+    padding: 25px;
+    border-radius: var(--radius);
+    box-shadow: 0 4px 20px var(--shadow-1);
+}
+
+ul li {
+    margin-bottom: 15px;
+    font-size: 1.05rem;
+    line-height: 1.5;
+}
+
+ul li strong {
+    color: var(--green-2);
+}
+
+/* =============================
+   FOOTER
+============================= */
+footer {
+    text-align: center;
+    padding: 25px;
+    background: var(--green-1);
+    color: white;
+    margin-top: 50px;
+    font-size: 1rem;
+}
+
+/* =============================
+   ANIMATION
+============================= */
+@keyframes fadeUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+}
+
+@media (max-width: 700px) {
+    .container {
+        padding: 28px;
+    }
+
+    th, td {
+        font-size: 0.9rem;
+        padding: 12px;
+    }
+}
