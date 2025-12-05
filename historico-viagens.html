@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Histórico de Viagens — Perfil</title>
+  <link rel="stylesheet" href="historico-viagens.css" />
+</head>
+<body class="app app--history">
+
+  <header class="header header--profile">
+    <div class="container header__inner">
+      <a class="brand" href="#">
+        <img alt="Logo" class="brand__logo" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='34' height='34'><rect width='34' height='34' rx='6' fill='%23007bff'/><text x='50%' y='55%' text-anchor='middle' font-size='18' font-family='Arial' fill='white'>CO₂</text></rect></svg>">
+        <span class="brand__text">ecoRoute</span>
+      </a>
+
+      <div class="header__actions">
+        <div class="profile">
+          <div class="profile__info">
+            <div class="profile__name">Eric Grillo</div>
+            <div class="profile__meta small">Membro desde 2024 • 1.254 kg CO₂ evitados</div>
+          </div>
+          <button class="avatar avatar--lg" title="Perfil">
+            <span class="avatar__initial">E</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main container">
+    <section class="profile-top">
+      <div class="profile-top__left">
+        <div class="card card--profile">
+          <h2 class="h2">Resumo Mensal</h2>
+          <div class="kpis">
+            <div class="kpi">
+              <div class="kpi__label">Emissões este mês</div>
+              <div class="kpi__value">42.8 kg</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi__label">Viagens</div>
+              <div class="kpi__value">14</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi__label">Meta</div>
+              <div class="kpi__value">Reduzir 20%</div>
+            </div>
+          </div>
+          <!-- Placeholder para gráfico -->
+          <div class="chart" id="chart-placeholder">Gráfico de tendência (substituir por chart lib)</div>
+        </div>
+
+        <div class="card">
+          <h3 class="h3">Meta Pessoal</h3>
+          <div class="goal">
+            <div class="goal__progress" role="progressbar" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+              <div class="goal__bar" style="width:35%"></div>
+            </div>
+            <div class="goal__meta small">Você atingiu 35% da meta de redução para este mês</div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="profile-top__right">
+        <div class="card">
+          <h3 class="h3">Veículos cadastrados</h3>
+          <ul class="vehicles">
+            <li class="vehicle">
+              <div class="vehicle__left">
+                <div class="vehicle__name">Fiat Uno • Gasolina</div>
+                <div class="small muted">Consumo: 12 km/L</div>
+              </div>
+              <div class="vehicle__right">
+                <button class="btn btn--ghost">Editar</button>
+              </div>
+            </li>
+            <li class="vehicle">
+              <div class="vehicle__left">
+                <div class="vehicle__name">Bicicleta</div>
+                <div class="small muted">Uso ocasional</div>
+              </div>
+              <div class="vehicle__right">
+                <button class="btn btn--ghost">Editar</button>
+              </div>
+            </li>
+          </ul>
+          <div class="card__actions">
+            <button class="btn btn--primary">Adicionar veículo</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="h3">Badges</h3>
+          <div class="badges">
+            <span class="badge">Eco Novato</span>
+            <span class="badge">10 viagens sem carro</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="history-list card">
+      <h2 class="h2">Histórico de Viagens</h2>
+      <div class="filters">
+        <input placeholder="Pesquisar por endereço ou nota" class="input" />
+        <select class="select">
+          <option>Últimos 30 dias</option>
+          <option>Últimos 90 dias</option>
+          <option>Este ano</option>
+        </select>
+        <button class="btn btn--ghost">Exportar CSV</button>
+      </div>
+
+      <ul class="trips">
+        <!-- Trip item -->
+        <li class="trip">
+          <div class="trip__left">
+            <div class="trip__date">02 Dez 2025 • 08:34</div>
+            <div class="trip__route">Casa → Trabalho</div>
+            <div class="trip__meta small muted">16.2 km • 32 min</div>
+          </div>
+          <div class="trip__center">
+            <div class="trip__co2">3.6 kg CO₂</div>
+            <div class="trip__fuel">1.4 L</div>
+          </div>
+          <div class="trip__right">
+            <button class="btn btn--secondary">Ver no mapa</button>
+            <button class="btn btn--ghost">Detalhes</button>
+          </div>
+        </li>
+
+        <li class="trip">
+          <div class="trip__left">
+            <div class="trip__date">01 Dez 2025 • 18:10</div>
+            <div class="trip__route">Trabalho → Academia</div>
+            <div class="trip__meta small muted">5.0 km • 14 min</div>
+          </div>
+          <div class="trip__center">
+            <div class="trip__co2">0.9 kg CO₂</div>
+            <div class="trip__fuel">0.3 L</div>
+          </div>
+          <div class="trip__right">
+            <button class="btn btn--secondary">Ver no mapa</button>
+            <button class="btn btn--ghost">Detalhes</button>
+          </div>
+        </li>
+
+        <!-- More items... -->
+      </ul>
+
+      <div class="pagination small muted">Mostrando 1–10 de 142 viagens</div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__left">© 2025 ecoRoute</div>
+      <nav class="footer__nav">
+        <a href="#">Privacidade</a>
+        <a href="#">Termos</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>

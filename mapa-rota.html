@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mapa de Rota — CO₂ por Trajeto</title>
+  <link rel="stylesheet" href="mapa-rota.css" />
+</head>
+<body class="app app--map">
+
+  <!--
+    LAYER / Figma notes:
+    - Frame: "MAP / 1440"
+    - Component: Header (variant: logged-in / logged-out)
+    - Grid: 12 col @ 1440, gutters 24px
+    - Tokens: use --brand, --accent, --bg, --muted
+  -->
+
+  <header class="header">
+    <div class="container header__inner">
+      <a class="brand" href="#">
+        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='34' height='34'><rect width='34' height='34' rx='6' fill='%23007bff'/><text x='50%' y='55%' text-anchor='middle' font-size='18' font-family='Arial' fill='white'>CO₂</text></rect></svg>"
+             alt="Logo" class="brand__logo" />
+        <span class="brand__text">ecoRoute</span>
+      </a>
+
+      <div class="header__actions">
+        <div class="search-mini">
+          <input class="search-mini__input" placeholder="Pesquisar endereço, cidade..." aria-label="Pesquisar" />
+          <button class="btn btn--ghost">Ir</button>
+        </div>
+        <button class="btn btn--primary">Calcular Trajeto</button>
+        <button class="avatar" title="Perfil">
+          <span class="avatar__initial">E</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main container">
+    <section class="map-panel">
+
+      <!-- Left column: mapa grande -->
+      <div class="map-panel__map" id="map-placeholder" role="region" aria-label="Mapa da rota">
+        <!-- Placeholder: substituir por Mapbox/Leaflet/GoogleMaps embed -->
+        <div class="map-placeholder">
+          <div class="map-placeholder__note">Mapa interativo aqui (integre Mapbox/Leaflet)</div>
+        </div>
+
+        <!-- Floating control sobre o mapa (layers) -->
+        <div class="map-controls">
+          <button class="control">Camadas</button>
+          <button class="control">Tempo</button>
+          <button class="control">Trajeto eco</button>
+        </div>
+      </div>
+
+      <!-- Right column: métricas e trecho breakdown -->
+      <aside class="map-panel__sidebar" aria-label="Detalhes da rota">
+        <div class="card card--sticky">
+          <div class="card__header">
+            <h2 class="h2">Resumo da Viagem</h2>
+            <div class="small muted">Origem → Destino • 42,3 km</div>
+          </div>
+
+          <div class="metrics">
+            <div class="metric">
+              <div class="metric__label">CO₂ estimado</div>
+              <div class="metric__value">8.7 kg</div>
+              <div class="metric__sub">por trajeto</div>
+            </div>
+            <div class="metric">
+              <div class="metric__label">Tempo</div>
+              <div class="metric__value">52 min</div>
+              <div class="metric__sub">com trânsito</div>
+            </div>
+            <div class="metric">
+              <div class="metric__label">Consumo estimado</div>
+              <div class="metric__value">6.4 L</div>
+              <div class="metric__sub">combustível</div>
+            </div>
+          </div>
+
+          <!-- Route breakdown: trecho por trecho -->
+          <div class="route-breakdown">
+            <h3 class="h3">Trechos</h3>
+
+            <!-- Each .segment is a row representing a route segment -->
+            <div class="segment">
+              <div class="segment__left">
+                <div class="dot dot--city"></div>
+                <div class="segment__title">Avenida Central → BR-101</div>
+                <div class="segment__meta">12.1 km • 15 min</div>
+              </div>
+              <div class="segment__right">
+                <div class="segment__co2">3.1 kg</div>
+              </div>
+            </div>
+
+            <div class="segment">
+              <div class="segment__left">
+                <div class="dot dot--highway"></div>
+                <div class="segment__title">BR-101 (trecho rápido)</div>
+                <div class="segment__meta">20.0 km • 18 min</div>
+              </div>
+              <div class="segment__right">
+                <div class="segment__co2">2.5 kg</div>
+              </div>
+            </div>
+
+            <div class="segment">
+              <div class="segment__left">
+                <div class="dot dot--urban"></div>
+                <div class="segment__title">Entroncamento → Destino</div>
+                <div class="segment__meta">10.2 km • 19 min</div>
+              </div>
+              <div class="segment__right">
+                <div class="segment__co2">3.1 kg</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card__actions">
+            <button class="btn btn--secondary">Comparar Alternativas</button>
+            <button class="btn btn--primary">Compartilhar / Exportar</button>
+          </div>
+        </div>
+
+        <!-- Suggestions: rota mais verde -->
+        <div class="card card--muted">
+          <h3 class="h3">Sugestões para reduzir CO₂</h3>
+          <ul class="suggestions">
+            <li>Seguir rota eco (-12% CO₂)</li>
+            <li>Optar por transporte público em parte do trajeto</li>
+            <li>Reduzir velocidade média em trechos urbanos</li>
+          </ul>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Bottom strip: comparador rápido -->
+    <section class="compare-strip">
+      <div class="compare">
+        <div class="compare__item">
+          <div class="compare__mode">Carro (atual)</div>
+          <div class="compare__value">8.7 kg</div>
+        </div>
+        <div class="compare__item">
+          <div class="compare__mode">Ônibus</div>
+          <div class="compare__value">3.2 kg</div>
+        </div>
+        <div class="compare__item">
+          <div class="compare__mode">Bicicleta</div>
+          <div class="compare__value">0.0 kg</div>
+        </div>
+        <div class="compare__cta">
+          <button class="btn btn--ghost">Ver comparação completa</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__left">© 2025 ecoRoute</div>
+      <nav class="footer__nav">
+        <a href="#">Metodologia</a>
+        <a href="#">API</a>
+        <a href="#">Suporte</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>

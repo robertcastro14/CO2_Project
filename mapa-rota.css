@@ -1,0 +1,137 @@
+/* mapa-rota.css
+   Tokens e guidelines para Figma:
+   - Tipografia: --font-sans: "Inter", system-ui, sans-serif
+   - Grid desktop: 12 col, container max-width: 1200px (centralizado)
+   - Spacing scale: 4/8/12/16/24/32/40/48
+*/
+
+/* DESIGN TOKENS */
+:root{
+  --font-sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --bg: #f7f9fb;
+  --card: #ffffff;
+  --brand: #007bff;
+  --accent: #00b894;
+  --muted: #6b7280;
+  --text: #0f1724;
+  --glass: rgba(15,23,36,0.04);
+
+  --radius: 12px;
+  --shadow-1: 0 6px 18px rgba(6,15,30,0.06);
+  --max-width: 1200px;
+}
+
+/* Global */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:var(--font-sans);
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* Container centered */
+.container{
+  width:100%;
+  max-width:var(--max-width);
+  margin:0 auto;
+  padding:24px;
+}
+
+/* Header */
+.header{
+  background:transparent;
+  padding:12px 0;
+}
+.header__inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text)}
+.brand__logo{width:40px;height:40px;border-radius:8px}
+.brand__text{font-weight:700;font-size:18px}
+.header__actions{display:flex;align-items:center;gap:12px}
+.search-mini{display:flex;gap:8px;align-items:center;background:var(--card);padding:6px;border-radius:10px;box-shadow:var(--shadow-1)}
+.search-mini__input{border:0;background:transparent;padding:6px 8px;min-width:160px;outline:none}
+.btn{padding:10px 14px;border-radius:10px;border:0;cursor:pointer;font-weight:600}
+.btn--primary{background:var(--brand);color:white;box-shadow:var(--shadow-1)}
+.btn--secondary{background:#eef6ff;color:var(--brand)}
+.btn--ghost{background:transparent;border:1px solid rgba(15,23,36,0.06);color:var(--text)}
+
+/* Avatar */
+.avatar{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#eef2ff,#f0fff4);display:flex;align-items:center;justify-content:center;border:0}
+.avatar__initial{font-weight:700;color:var(--brand)}
+
+/* Main layout */
+.main{padding-bottom:48px}
+.map-panel{display:grid;grid-template-columns:1fr 380px;gap:24px;align-items:start}
+.map-panel__map{
+  background:linear-gradient(180deg, #e6f0ff 0%, #f8fcff 100%);
+  border-radius:16px;padding:0;min-height:640px;position:relative;overflow:hidden;box-shadow:var(--shadow-1)
+}
+.map-placeholder{display:flex;align-items:center;justify-content:center;height:100%}
+.map-placeholder__note{color:var(--muted);font-weight:600;opacity:0.9}
+
+/* Floating map controls */
+.map-controls{position:absolute;top:18px;left:18px;display:flex;flex-direction:column;gap:8px}
+.control{background:white;padding:8px 10px;border-radius:10px;border:0;box-shadow:var(--shadow-1);cursor:pointer}
+
+/* Sidebar card */
+.map-panel__sidebar{position:relative}
+.card{background:var(--card);border-radius:var(--radius);padding:18px;margin-bottom:16px;box-shadow:var(--shadow-1)}
+.card--sticky{position:sticky;top:24px}
+.card__header{display:flex;flex-direction:column;gap:4px}
+.h2{margin:0;font-size:18px}
+.small{font-size:13px;color:var(--muted)}
+.metrics{display:flex;gap:14px;margin-top:16px}
+.metric{flex:1;background:var(--glass);padding:12px;border-radius:10px}
+.metric__label{font-size:12px;color:var(--muted)}
+.metric__value{font-size:20px;font-weight:800;margin-top:6px}
+.metric__sub{font-size:12px;color:var(--muted)}
+
+/* Route breakdown */
+.route-breakdown{margin-top:18px}
+.h3{margin:0 0 10px 0;font-size:15px}
+.segment{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-top:1px dashed rgba(15,23,36,0.04)}
+.segment:first-of-type{border-top:0}
+.segment__left{display:flex;gap:12px;align-items:center}
+.dot{width:12px;height:12px;border-radius:50%}
+.dot--city{background:#ffb703}
+.dot--highway{background:#007bff}
+.dot--urban{background:#ef476f}
+.segment__title{font-weight:700}
+.segment__meta{font-size:12px;color:var(--muted)}
+.segment__co2{font-weight:800}
+
+/* Card actions */
+.card__actions{display:flex;gap:10px;margin-top:18px}
+
+/* Suggestions */
+.card--muted{background:linear-gradient(180deg,#fbfffb,#ffffff)}
+.suggestions{margin:0;padding-left:18px;color:var(--muted)}
+
+/* Compare strip */
+.compare-strip{margin-top:20px}
+.compare{display:flex;gap:16px;align-items:center;justify-content:space-between;background:transparent;padding:12px;border-radius:12px}
+.compare__item{background:var(--card);padding:12px;border-radius:10px;min-width:150px;text-align:center;box-shadow:var(--shadow-1)}
+.compare__mode{font-weight:700}
+.compare__value{font-size:18px;margin-top:6px}
+
+/* Footer */
+.footer{padding:18px 0;background:transparent}
+.footer__inner{display:flex;justify-content:space-between;align-items:center;color:var(--muted)}
+
+/* Responsive: mobile */
+@media (max-width:900px){
+  .container{padding:16px}
+  .map-panel{grid-template-columns:1fr;gap:12px}
+  .map-panel__map{min-height:480px}
+  .map-panel__sidebar{order:2}
+  .card--sticky{position:relative;top:auto}
+  .metrics{flex-direction:column}
+}
