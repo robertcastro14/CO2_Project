@@ -1,0 +1,184 @@
+/* =============================
+   GLOBAL
+============================= */
+:root {
+    --green-1: #0f5132;
+    --green-2: #146c43;
+    --green-3: #198754;
+    --green-4: #e8f5ee;
+    --green-5: #f4fbf7;
+    --shadow-1: rgba(0,0,0,0.07);
+    --shadow-2: rgba(0,0,0,0.15);
+    --radius: 22px;
+    --transition: 0.25s ease;
+    font-family: "Inter", sans-serif;
+}
+
+body {
+    margin: 0;
+    background: var(--green-4);
+    color: #222;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* =============================
+   HEADER
+============================= */
+header {
+    width: 100%;
+    padding: 30px 6%;
+    background: linear-gradient(135deg, var(--green-1), var(--green-2));
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 4px 18px var(--shadow-2);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.logo-circle {
+    width: 54px;
+    height: 54px;
+    background: white;
+    border-radius: 50%;
+    position: relative;
+}
+
+.logo-leaf {
+    width: 22px;
+    height: 22px;
+    background: var(--green-1);
+    border-radius: 6px;
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    transform: rotate(-35deg);
+}
+
+/* =============================
+   HERO
+============================= */
+.hero {
+    padding: 90px 6% 40px;
+}
+
+.hero h1 {
+    font-size: 3.6rem;
+    font-weight: 800;
+    color: var(--green-1);
+    line-height: 1.1;
+    max-width: 550px;
+    animation: fadeUp 0.6s ease forwards;
+    opacity: 0;
+}
+
+/* =============================
+   CARD
+============================= */
+.calculator-card {
+    width: 90%;
+    max-width: 650px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: var(--radius);
+    box-shadow: 0 8px 30px var(--shadow-1);
+    backdrop-filter: blur(8px);
+    animation: fadeUp 0.6s ease 0.2s forwards;
+    opacity: 0;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--green-1);
+}
+
+input,
+select {
+    width: 100%;
+    padding: 16px;
+    border-radius: var(--radius);
+    border: 2px solid var(--green-4);
+    background: var(--green-5);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+input:focus,
+select:focus {
+    border-color: var(--green-3);
+    outline: none;
+    background: white;
+}
+
+/* =============================
+   BUTTON
+============================= */
+.calculate-btn {
+    width: 100%;
+    padding: 18px;
+    margin-top: 25px;
+    border: none;
+    border-radius: var(--radius);
+    background: var(--green-1);
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.calculate-btn:hover {
+    background: var(--green-2);
+    transform: translateY(-2px);
+}
+
+/* =============================
+   RESULT
+============================= */
+.result-box {
+    margin-top: 35px;
+    background: var(--green-5);
+    border: 2px solid var(--green-4);
+    padding: 28px;
+    border-radius: var(--radius);
+    box-shadow: 0 4px 20px var(--shadow-1);
+    text-align: center;
+    animation: fadeUp 0.6s ease 0.4s forwards;
+    opacity: 0;
+}
+
+.result-value {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--green-2);
+}
+
+/* =============================
+   ANIMATION
+============================= */
+@keyframes fadeUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+}
+
+@media (max-width: 700px) {
+    .hero h1 {
+        font-size: 2.6rem;
+    }
+    .calculator-card {
+        padding: 28px;
+    }
+}

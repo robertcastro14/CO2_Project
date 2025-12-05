@@ -1,0 +1,124 @@
+<!-- avaliacoes.html -->
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>EcoJourney — Avaliações</title>
+<style>
+  :root{--bg:#eefcf1;--primary:#198754;--card:#fff;--muted:#5e7364;--radius:14px}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui, -apple-system, Roboto, Arial;background:var(--bg);color:#083923;padding:28px}
+  header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+  header h1{margin:0}
+  .container{max-width:920px;margin:0 auto}
+  .panel{background:var(--card);padding:18px;border-radius:var(--radius);box-shadow:0 10px 30px rgba(6,40,22,0.06)}
+  form{display:grid;gap:10px}
+  input, textarea, select{padding:12px;border-radius:10px;border:1px solid #e6efe8}
+  button{border:none;background:var(--primary);color:white;padding:12px;border-radius:10px;cursor:pointer;font-weight:700}
+  .reviews{margin-top:18px;display:flex;flex-direction:column;gap:12px}
+  .review{padding:12px;border-radius:10px;border:1px solid rgba(6,40,22,0.03);background:linear-gradient(180deg,#fff,#fbfff9)}
+  .meta{color:var(--muted);font-size:13px}
+  .stars{color:#f5b942}
+</style>
+</head>
+<body>
+  <header>
+    <div style="display:flex;gap:12px;align-items:center">
+      <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#0f5132,#198754);display:grid;place-items:center;color:white">EJ</div>
+      <div>
+        <h1 style="margin:0">Avaliações</h1>
+        <div style="color:#5f7767;font-size:13px">Leia e compartilhe sua experiência</div>
+      </div>
+    </div>
+    <nav>
+      <a href="index.html" style="margin-right:10px">Calculadora</a>
+      <a href="transportes.html">Transportes</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <h2 style="margin-top:0">Deixe sua avaliação</h2>
+      <form id="reviewForm" aria-label="Formulário de avaliação">
+        <div style="display:flex;gap:12px">
+          <input id="name" placeholder="Seu nome (opcional)" />
+          <select id="rating" aria-label="Nota">
+            <option value="5">⭐⭐⭐⭐⭐ (5)</option>
+            <option value="4">⭐⭐⭐⭐ (4)</option>
+            <option value="3">⭐⭐⭐ (3)</option>
+            <option value="2">⭐⭐ (2)</option>
+            <option value="1">⭐ (1)</option>
+          </select>
+        </div>
+        <textarea id="comment" rows="4" placeholder="Conte-nos como foi sua experiência..." required></textarea>
+        <div style="display:flex;gap:12px">
+          <button type="submit">Enviar avaliação</button>
+          <button type="button" id="clearAll" style="background:transparent;border:1px solid #e6efe8;color:var(--primary)">Limpar</button>
+        </div>
+      </form>
+    </section>
+
+    <section style="margin-top:18px">
+      <h3>Avaliações recentes</h3>
+      <div class="reviews" id="reviewsList" aria-live="polite"></div>
+    </section>
+  </main>
+
+<script>
+  const form = document.getElementById('reviewForm');
+  const reviewsList = document.getElementById('reviewsList');
+
+  // usa localStorage apenas para demo: chave 'ej_reviews'
+  function loadReviews(){
+    const raw = localStorage.getItem('ej_reviews') || '[]';
+    try{
+      return JSON.parse(raw);
+    }catch(e){ return [] }
+  }
+  function saveReviews(arr){ localStorage.setItem('ej_reviews', JSON.stringify(arr)) }
+
+  function render(){
+    const arr = loadReviews();
+    if(arr.length===0){
+      reviewsList.innerHTML = '<div class="review"><div class="meta">Seja o primeiro a avaliar — sua opinião ajuda outras pessoas!</div></div>';
+      return;
+    }
+    reviewsList.innerHTML = '';
+    arr.slice().reverse().forEach(r=>{
+      const div = document.createElement('div');
+      div.className='review';
+      div.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center">
+          <strong>${r.name||'Anônimo'}</strong><div class="stars">${'★'.repeat(r.rating)}</div>
+        </div>
+        <div style="margin-top:8px">${r.comment}</div>
+        <div class="meta" style="margin-top:8px">Enviado em ${new Date(r.date).toLocaleString('pt-BR')}</div>`;
+      reviewsList.appendChild(div);
+    });
+  }
+
+  form.addEventListener('submit', e=>{
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const rating = parseInt(document.getElementById('rating').value,10);
+    const comment = document.getElementById('comment').value.trim();
+    if(!comment) return alert('Escreva um comentário antes de enviar.');
+    const arr = loadReviews();
+    arr.push({name, rating, comment, date: new Date().toISOString()});
+    saveReviews(arr);
+    form.reset();
+    render();
+  });
+
+  document.getElementById('clearAll').addEventListener('click', ()=>{
+    if(confirm('Remover todas as avaliações locais?')){
+      localStorage.removeItem('ej_reviews');
+      render();
+    }
+  });
+
+  // inicializar
+  render();
+</script>
+</body>
+</html>
