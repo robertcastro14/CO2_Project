@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import RegistroCalculo # <-- Importa o modelo correto
+from .models import RegistroCalculo, DicaDeSustentabilidade, Notificacao
 
-# Registra o novo modelo no painel de administração
 admin.site.register(RegistroCalculo)
+admin.site.register(DicaDeSustentabilidade) # NOVO
+admin.site.register(Notificacao) # NOVO

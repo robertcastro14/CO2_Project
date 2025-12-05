@@ -1,0 +1,60 @@
+nohup: ignoring input
+Watching for file changes with StatReloader
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/workspaces/CO2_Project/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/CO2_Project/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/CO2_Project/.venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/CO2_Project/CO2_PROJECT/usuario/views.py", line 19, in home
+    return render(request, 'usuario/home.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/CO2_Project/.venv/lib/python3.12/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/CO2_Project/.venv/lib/python3.12/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/CO2_Project/.venv/lib/python3.12/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/CO2_Project/.venv/lib/python3.12/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/CO2_Project/.venv/lib/python3.12/site-packages/django/template/engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/CO2_Project/.venv/lib/python3.12/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/CO2_Project/.venv/lib/python3.12/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/CO2_Project/.venv/lib/python3.12/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/workspaces/CO2_Project/.venv/lib/python3.12/site-packages/django/template/base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/CO2_Project/.venv/lib/python3.12/site-packages/django/template/base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/workspaces/CO2_Project/.venv/lib/python3.12/site-packages/django/template/base.py", line 586, in parse
+    self.extend_nodelist(nodelist, compiled_result, token)
+  File "/workspaces/CO2_Project/.venv/lib/python3.12/site-packages/django/template/base.py", line 607, in extend_nodelist
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Template: /workspaces/CO2_Project/CO2_PROJECT/usuario/templates/usuario/home.html, {% extends 'base.html' %} must be the first tag in 'usuario/home.html'.
+[05/Dec/2025 11:39:29] "GET / HTTP/1.1" 500 157968
+[05/Dec/2025 11:40:52] "GET / HTTP/1.1" 200 5731
+[05/Dec/2025 11:40:53] "GET /static/usuario/css/style.css HTTP/1.1" 200 9592
+[05/Dec/2025 11:40:54] "GET /static/usuario/img/forest-bg.jpg HTTP/1.1" 404 1889
+[05/Dec/2025 11:41:01] "GET /calculadora/ HTTP/1.1" 200 6830
+[05/Dec/2025 11:41:03] "GET / HTTP/1.1" 200 5731
+[05/Dec/2025 11:41:13] "GET /historico/ HTTP/1.1" 200 6729
+[05/Dec/2025 11:41:15] "GET /calculadora/ HTTP/1.1" 200 6830
+[05/Dec/2025 11:41:17] "GET / HTTP/1.1" 200 5731

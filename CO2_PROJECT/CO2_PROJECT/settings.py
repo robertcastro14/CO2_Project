@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+from celery.schedules import crontab
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -137,3 +138,24 @@ CSRF_TRUSTED_ORIGINS = [
     'https://localhost:8000',
     'http://127.0.0.1:8000',
 ]
+
+# ===================================================
+# CONFIGURAÇÕES DO CELERY
+# ===================================================
+
+# Define o broker (intermediário). Use o endereço do seu Redis.
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0' 
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/0'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'America/Sao_Paulo' # Ajuste para seu fuso horário
+
+# Agendamento das tarefas (CELERY BEAT)
+CELERY_BEAT_SCHEDULE = {
+    'enviar-dica-sustentabilidade-diaria': {
+        'task': 'usuario.tasks.enviar_dica_diaria',
+        # Executa todos os dias às 8:00 AM (0 minuto, 8ª hora).
+        'schedule': crontab(hour=8, minute=0), 
+    },
+}

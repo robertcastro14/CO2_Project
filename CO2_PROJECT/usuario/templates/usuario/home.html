@@ -1,56 +1,48 @@
+{% extends 'base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoRota - Home</title>
-    <link rel="stylesheet" href="{% static 'usuario/css/style.css' %}">
-</head>
-<body>
+{% block content %}
+<div class="container mt-4">
 
-    <header>
-        <div class="logo">EcoRota</div>
-        <nav>
-            <ul>
-                <li><a href="{% url 'home' %}">Início</a></li>
-                
-                <li><a href="{% url 'calculadora' %}">Calculadora</a></li>
-                
-                <li><a href="#">Sobre</a></li>
-                <li><a href="#">Contato</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section class="hero">
-            <h1>Calcule sua Pegada de Carbono</h1>
-            <p>Entenda o impacto das suas escolhas de transporte no meio ambiente e descubra como reduzi-lo.</p>
+    {# LÓGICA DE EXIBIÇÃO DA NOTIFICAÇÃO (RF12) #}
+    {% if notificacao and not notificacao.lida %}
+    <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
+        <h5 class="alert-heading fw-bold">
+            <i class="bi bi-lightbulb-fill me-2"></i> Dica de Sustentabilidade Rápida!
+        </h5>
+        <p class="mb-2">
+            <strong>{{ notificacao.dica.titulo }}:</strong> {{ notificacao.dica.conteudo }}
+        </p>
         
-            <a href="{% url 'calculadora' %}" class="btn-cta">Começar Agora</a>
-        </section>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+        <a href="{% url 'marcar_notificacao_lida' notificacao.id %}" class="alert-link small text-decoration-underline">
+            Marcar como lida
+        </a>
+    </div>
+    {% endif %}
 
-        <section class="features">
-            <div class="card">
-                <h3>🚗 Calculadora</h3>
-                <p>Compare as emissões entre carro, ônibus, metrô e bicicleta.</p>
-            </div>
-            <div class="card">
-                <h3>📉 Monitoramento</h3>
-                <p>Acompanhe suas emissões mensais e visualize gráficos.</p>
-            </div>
-            <div class="card">
-                <h3>🌱 Dicas Verdes</h3>
-                <p>Aprenda formas simples de reduzir seu impacto ambiental.</p>
-            </div>
-        </section>
-    </main>
+    {# Conteúdo da Seção Principal (Hero) #}
+    <section class="hero text-center" style="padding: 4rem 1rem;">
+        <h1 style="font-size: 2.5rem; color: #2E7D32; margin-bottom: 1rem;">Calcule sua Pegada de Carbono</h1>
+        <p style="font-size: 1.2rem; margin-bottom: 2rem; color: #555;">Entenda o impacto das suas escolhas de transporte no meio ambiente e descubra como reduzi-lo.</p>
+        
+        <a href="{% url 'calculadora' %}" class="btn-cta" style="background-color: #2E7D32; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; font-size: 1.1rem;">Começar Agora</a>
+    </section>
 
-    <footer>
-        <p>&copy; 2025 EcoRota - Todos os direitos reservados.</p>
-    </footer>
-
-</body>
-</html>
+    {# Seção de Features #}
+    <section class="features d-flex justify-content-center gap-4 py-5 flex-wrap">
+        <div class="card shadow p-4 text-center" style="width: 300px;">
+            <h3>🚗 Calculadora</h3>
+            <p>Compare as emissões entre carro, ônibus, metrô e bicicleta.</p>
+        </div>
+        <div class="card shadow p-4 text-center" style="width: 300px;">
+            <h3>📉 Monitoramento</h3>
+            <p>Acompanhe suas emissões mensais e visualize gráficos.</p>
+        </div>
+        <div class="card shadow p-4 text-center" style="width: 300px;">
+            <h3>🌱 Dicas Verdes</h3>
+            <p>Aprenda formas simples de reduzir seu impacto ambiental.</p>
+        </div>
+    </section>
+</div>
+{% endblock content %}

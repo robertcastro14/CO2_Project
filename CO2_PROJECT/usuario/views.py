@@ -1,13 +1,22 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import RegistroCalculo
+from .models import RegistroCalculo, Notificacao
 
 # View da Página Inicial (Home)
 @login_required
 
 # View da Página Inicial (Home)
 def home(request):
-    return render(request, 'usuario/home.html')
+    # Busca a notificação mais recente e não lida para o usuário logado
+    notificacao_recente = Notificacao.objects.filter(
+        usuario=request.user, 
+        lida=False
+    ).order_by('-data_envio').first()
+
+    context = {
+        'notificacao': notificacao_recente
+    }
+    return render(request, 'usuario/home.html', context)
 
 # View da Calculadora (Lógica de Cálculo)
 @login_required
@@ -81,3 +90,15 @@ def historico(request):
     }
     
     return render(request, 'usuario/historico.html', context)
+
+def marcar_notificacao_lida(request, notificacao_id):
+    try:
+        # Busca a notificação que pertence ao usuário logado
+        notificacao = Notificacao.objects.get(id=notificacao_id, usuario=request.user)
+        notificacao.lida = True
+        notificacao.save()
+    except Notificacao.DoesNotExist:
+        pass 
+        
+    # Redireciona de volta para a home
+    return redirect('home')
