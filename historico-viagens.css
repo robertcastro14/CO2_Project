@@ -1,0 +1,91 @@
+/* historico-viagens.css
+   Tokens: aproveita os mesmos do mapa para consistência visual.
+*/
+:root{
+  --font-sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --bg: #f7f9fb;
+  --card: #ffffff;
+  --brand: #007bff;
+  --accent: #00b894;
+  --muted: #6b7280;
+  --text: #0f1724;
+  --radius: 12px;
+  --shadow-1: 0 6px 18px rgba(6,15,30,0.06);
+  --max-width: 1200px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:var(--font-sans);background:var(--bg);color:var(--text)}
+
+.container{width:100%;max-width:var(--max-width);margin:0 auto;padding:24px}
+
+/* Header profile */
+.header{padding:12px 0}
+.header__inner{display:flex;align-items:center;justify-content:space-between}
+.profile{display:flex;align-items:center;gap:12px}
+.profile__info{text-align:right}
+.profile__name{font-weight:800}
+.profile__meta{font-size:13px;color:var(--muted)}
+
+/* Reuse button styles */
+.btn{padding:8px 12px;border-radius:10px;border:0;cursor:pointer;font-weight:600}
+.btn--primary{background:var(--brand);color:white}
+.btn--secondary{background:#eef6ff;color:var(--brand)}
+.btn--ghost{background:transparent;border:1px solid rgba(15,23,36,0.06)}
+
+/* Layout: profile top */
+.profile-top{display:grid;grid-template-columns:1fr 320px;gap:24px;margin-bottom:20px}
+.card{background:var(--card);padding:18px;border-radius:var(--radius);box-shadow:var(--shadow-1);margin-bottom:16px}
+.card--profile{padding:20px}
+
+/* KPIs */
+.kpis{display:flex;gap:12px;margin-top:12px}
+.kpi{flex:1;background:var(--bg);padding:12px;border-radius:10px;text-align:center}
+.kpi__label{font-size:13px;color:var(--muted)}
+.kpi__value{font-size:20px;font-weight:800;margin-top:6px}
+
+/* Chart placeholder */
+.chart{height:140px;border-radius:10px;background:linear-gradient(180deg,#ffffff,#f8fafc);display:flex;align-items:center;justify-content:center;color:var(--muted);margin-top:12px}
+
+/* Goal */
+.goal__progress{background:rgba(0,0,0,0.06);height:12px;border-radius:8px;overflow:hidden;margin-top:12px}
+.goal__bar{height:100%;background:linear-gradient(90deg,var(--brand),#00b4a2)}
+
+/* Vehicles list */
+.vehicles{list-style:none;padding:0;margin:0}
+.vehicle{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-top:1px solid rgba(15,23,36,0.04)}
+.vehicle:first-of-type{border-top:0}
+
+/* Badges */
+.badge{display:inline-block;background:#f0fff4;border-radius:999px;padding:6px 10px;margin-right:8px;font-weight:700;color:var(--accent)}
+
+/* History list */
+.history-list{padding:18px}
+.filters{display:flex;gap:10px;align-items:center;margin-bottom:12px}
+.input{padding:10px;border-radius:10px;border:1px solid rgba(15,23,36,0.06);flex:1}
+.select{padding:10px;border-radius:10px;border:1px solid rgba(15,23,36,0.06)}
+.trips{list-style:none;padding:0;margin:0}
+.trip{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-top:1px solid rgba(15,23,36,0.04)}
+.trip:first-of-type{border-top:0}
+.trip__left{flex:2}
+.trip__center{flex:1;text-align:center}
+.trip__right{display:flex;gap:8px;align-items:center}
+
+/* Pagination */
+.pagination{margin-top:12px;color:var(--muted)}
+
+/* Footer */
+.footer{padding:18px 0;margin-top:30px;color:var(--muted)}
+
+/* Responsive */
+@media (max-width:900px){
+  .container{padding:16px}
+  .profile-top{grid-template-columns:1fr;gap:12px}
+  .header__inner{flex-direction:column;align-items:flex-start;gap:12px}
+  .profile__info{text-align:left}
+  .filters{flex-direction:column;align-items:stretch}
+  .trip{flex-direction:column;align-items:flex-start;gap:8px}
+  .trip__center{text-align:left}
+  .trip__right{align-self:stretch;display:flex;gap:8px}
+}
