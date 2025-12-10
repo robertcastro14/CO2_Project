@@ -1,18 +1,104 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
-<div class="card card-eco p-5 text-center">
-    <h1 class="text-success fw-bold mb-3">Sobre o EcoRota</h1>
-    <p class="lead text-muted">Uma iniciativa para um futuro mais sustentável.</p>
-    <hr class="my-4">
-    <div class="row text-start mt-4">
-        <div class="col-md-6">
-            <h4><i class="bi bi-bullseye text-success"></i> Nossa Missão</h4>
-            <p>Ajudar pessoas a conscientizarem-se sobre suas emissões de carbono no transporte diário.</p>
+
+<div class="bg-light py-5 mb-5" style="background-color: #eaf7ee;">
+    <div class="container text-center">
+        <i class="bi bi-geo-alt-fill text-success" style="font-size: 2.5rem;"></i>
+        <h1 class="display-4 fw-bold text-success mt-2 mb-3">Quem Somos</h1>
+        <p class="lead text-secondary mx-auto" style="max-width: 800px;">
+            O EcoRota é uma iniciativa nascida na PUC-Rio com a missão de medir, entender e agir para
+            reduzir a pegada de carbono no transporte de nossa comunidade e além.
+        </p>
+    </div>
+</div>
+
+<div class="container my-5">
+    <div class="row align-items-center g-5">
+        
+        <div class="col-md-7 order-md-1 order-2">
+            
+            <h2 class="fw-bold text-success mb-3 display-6">Nossa Missão</h2>
+            <p class="fs-5 text-dark">
+                "Conscientizar e capacitar" a comunidade para o monitoramento contínuo de suas emissões de
+                CO₂ relacionadas ao transporte diário. Fornecemos uma ferramenta acessível e baseada em dados
+                para incentivar a migração para modais de transporte mais limpos.
+            </p>
+            
+            <h2 class="fw-bold text-success mb-3 display-6 mt-5">Nossa Visão</h2>
+            <p class="text-secondary">
+                Ser o "padrão de referência" em gestão de pegada de carbono em ambientes acadêmicos, começando
+                pela PUC-Rio, e evoluir para integrar novas funcionalidades de planejamento de rotas e soluções de
+                compensação de emissões (Monetizar Aplicação).
+            </p>
         </div>
-        <div class="col-md-6">
-            <h4><i class="bi bi-people-fill text-success"></i> Quem Somos</h4>
-            <p>Projeto desenvolvido por estudantes de Engenharia da PUC-Rio.</p>
+        
+        <div class="col-md-5 order-md-2 order-1 text-center">
+            <div class="card card-eco bg-light p-4 shadow-sm h-100 d-flex flex-column justify-content-center">
+                 <i class="bi bi-mortarboard-fill text-success mb-3" style="font-size: 4rem;"></i>
+                 <h4 class="fw-bold text-dark">Contexto PUC-Rio</h4>
+                 <p class="text-muted small mb-0">
+                    O projeto foca na realidade da Gávea, incentivando a redução do uso de carro e promovendo
+                    alternativas sustentáveis para o deslocamento na região.
+                 </p>
+            </div>
         </div>
     </div>
 </div>
+
+<section class="py-5" style="background-color: #f7fff6;">
+    <div class="container">
+        <h3 class="text-center fw-bold text-dark mb-5">Três Pilares do EcoRota</h3>
+        <div class="row g-4">
+            
+            <div class="col-md-4">
+                <div class="card card-eco h-100 p-4 text-center">
+                    <i class="bi bi-bar-chart-fill text-success mb-3" style="font-size: 2.5rem;"></i>
+                    <h4 class="fw-bold text-dark">Transparência nos Dados</h4>
+                    <p class="text-muted small mb-0">
+                        Nossa calculadora é baseada em fatores de emissão rigorosos e validados, garantindo
+                        que cada cálculo reflita o impacto real do seu transporte.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card card-eco h-100 p-4 text-center">
+                    <i class="bi bi-hand-thumbs-up-fill text-success mb-3" style="font-size: 2.5rem;"></i>
+                    <h4 class="fw-bold text-dark">Incentivo à Mudança</h4>
+                    <p class="text-muted small mb-0">
+                        Através de dicas personalizadas e monitoramento, transformamos a medição em um
+                        incentivo ativo para a adoção de transportes de baixa emissão.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card card-eco h-100 p-4 text-center">
+                    <i class="bi bi-arrow-repeat text-success mb-3" style="font-size: 2.5rem;"></i>
+                    <h4 class="fw-bold text-dark">Evolução Contínua</h4>
+                    <p class="text-muted small mb-0">
+                        O projeto foi desenhado para escalabilidade, permitindo a futura inclusão de
+                        novos modais, integração de rotas e expansão para outras comunidades universitárias.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="bg-success text-white py-5">
+    <div class="container text-center">
+        <h3 class="fw-bold mb-3">Faça Parte da Mudança</h3>
+        <p class="lead text-white-75 mb-4">
+            Acreditamos que a sustentabilidade começa com a informação. Comece hoje mesmo a calcular e monitorar sua pegada.
+        </p>
+        <a href="{% url 'calculadora' %}" class="btn btn-lg btn-light btn-eco shadow-sm text-success fw-bold">
+            Calcule Agora! <i class="bi bi-arrow-right-short"></i>
+        </a>
+    </div>
+</section>
+
 {% endblock %}

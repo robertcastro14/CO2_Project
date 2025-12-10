@@ -25,6 +25,16 @@
     --calc-transition: 240ms cubic-bezier(.2,.9,.3,1);
     --calc-radius: 16px;
     --calc-max-width: 1100px;
+
+    --primary-color: #2e7d32; /* Verde Mais Escuro (como no Carbon Lifecycle) */
+    --secondary-color: #558b2f; /* Verde Médio */
+    --accent-color: #c5e1a5;   /* Verde Claro */
+    --text-dark: #333333;
+    --text-light: #f4f4f4;
+    --bg-light: #ffffff;
+    --bg-dark: #202020;
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --border-radius: 12px;
 }
 
 /* ================================================== */
@@ -326,4 +336,27 @@ footer {
         position: relative;
         top: auto;
     }
+}
+
+/* --- FUNDOS DE SEÇÃO COM IMAGENS E GRADIENTES --- */
+
+/* Fundo para a seção Hero da Home ou o topo do "Sobre" */
+.section-hero-bg {
+    background: linear-gradient(rgba(46, 125, 50, 0.8), rgba(27, 94, 32, 0.8)), url('../img/forest-bg-large.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+/* Estilo para a caixa de Contato/Calculadora para contrastar com o fundo claro */
+.card-contrast {
+    background-color: white;
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius);
+    padding: 30px;
+}
+
+/* Garante que o body use um fundo claro para todas as páginas */
+body {
+    background-color: #f8f9fa; /* Cinza bem clarinho */
 }

@@ -1,24 +1,109 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-md-8">
-        <div class="card card-eco p-5">
-            <h2 class="text-center text-success fw-bold mb-4">Fale Conosco</h2>
-            <form>
-                <div class="mb-3">
-                    <label class="form-label">Nome</label>
-                    <input type="text" class="form-control" placeholder="Seu nome">
+<div class="container py-5">
+    
+    <div class="text-center mb-5">
+        <i class="bi bi-chat-dots-fill text-success" style="font-size: 2.5rem;"></i>
+        <h1 class="display-4 fw-bold text-success mt-2 mb-2">Fale Conosco</h1>
+        <p class="lead text-secondary mx-auto" style="max-width: 800px;">
+            Tem dúvidas ou interesse em saber como o EcoRota pode ajudar sua comunidade?
+        </p>
+    </div>
+
+    <div class="row g-5 justify-content-center">
+        
+        <div class="col-lg-7">
+            <div class="card card-eco p-4 p-md-5">
+                <h3 class="fw-bold text-dark mb-4 border-bottom pb-3">Preencha o Formulário</h3>
+                
+                <form method="post" action="#"> 
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold text-muted" for="nome">Nome Completo *</label>
+                        <input type="text" class="form-control" id="nome" placeholder="Seu nome" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold text-muted" for="email">E-mail *</label>
+                        <input type="email" class="form-control" id="email" placeholder="seu@email.com" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold text-muted" for="telefone">Telefone</label>
+                        <input type="tel" class="form-control" id="telefone" placeholder="(XX) XXXXX-XXXX">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold text-muted" for="assunto">Assunto *</label>
+                        <select class="form-select" id="assunto" required>
+                            <option value="" disabled selected>Selecione um assunto</option>
+                            <option value="duvidas">Dúvidas sobre o cálculo</option>
+                            <option value="sugestoes">Sugestões e melhorias</option>
+                            <option value="parcerias">Parcerias e Negócios</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label small fw-bold text-muted" for="mensagem">Mensagem *</label>
+                        <textarea class="form-control" id="mensagem" rows="5" placeholder="Digite sua mensagem detalhada..." required></textarea>
+                    </div>
+                    
+                    <div class="form-check mb-4">
+                        <input class="form-check-input" type="checkbox" value="" id="termos">
+                        <label class="form-check-label small text-muted" for="termos">
+                            Concordo com os termos de privacidade (dados serão usados apenas para contato).
+                        </label>
+                    </div>
+                    
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-eco btn-lg">
+                            Enviar Contato <i class="bi bi-arrow-right ms-2"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="col-lg-5">
+            
+            <h3 class="fw-bold text-dark mb-4">Informações</h3>
+
+            <div class="d-flex align-items-start p-3 border-bottom border-light-subtle">
+                <i class="bi bi-envelope-fill text-success me-3 mt-1" style="font-size: 1.5rem;"></i>
+                <div>
+                    <p class="small text-muted mb-0 fw-bold">E-mail</p>
+                    <a href="mailto:contato@ecorota.com.br" class="text-decoration-none fw-bold text-dark">contato@ecorota.com.br</a>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">E-mail</label>
-                    <input type="email" class="form-control" placeholder="seu@email.com">
+            </div>
+            
+            <div class="d-flex align-items-start p-3 border-bottom border-light-subtle">
+                <i class="bi bi-whatsapp text-success me-3 mt-1" style="font-size: 1.5rem;"></i>
+                <div>
+                    <p class="small text-muted mb-0 fw-bold">Telefone/WhatsApp</p>
+                    <a href="https://wa.me/5521999999999" target="_blank" class="text-decoration-none fw-bold text-dark">(21) 99999-9999</a>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Mensagem</label>
-                    <textarea class="form-control" rows="4"></textarea>
+            </div>
+
+            <div class="d-flex align-items-start p-3 border-bottom border-light-subtle">
+                <i class="bi bi-building-fill text-success me-3 mt-1" style="font-size: 1.5rem;"></i>
+                <div>
+                    <p class="small text-muted mb-0 fw-bold">Endereço de Referência</p>
+                    <p class="mb-0 fw-bold text-dark">PUC-Rio, Gávea</p>
+                    <p class="small text-muted mb-0">Rio de Janeiro - RJ</p>
                 </div>
-                <button type="submit" class="btn btn-eco w-100">Enviar Mensagem</button>
-            </form>
+            </div>
+
+            <div class="mt-4 p-3">
+                <h5 class="fw-bold text-dark mb-3">Siga-nos</h5>
+                <a href="#" class="btn btn-outline-success me-2"><i class="bi bi-linkedin"></i></a>
+                <a href="#" class="btn btn-outline-success me-2"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="btn btn-outline-success"><i class="bi bi-twitter-x"></i></a>
+            </div>
+
         </div>
     </div>
 </div>
