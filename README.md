@@ -68,27 +68,11 @@ Depois de ativar o `venv` e instalar as dependências, configure o banco de dado
     python manage.py createsuperuser
     ```
 
-### 3. Execução
+Acesse a administração em `http://127.0.0.1:8000/admin/` para adicionar dados (contatos) manualmente.
 
-1.  **Rode o Servidor Django:**
-    ```bash
-    python manage.py runserver
-    ```
-2.  **Acesse o Site no Navegador:**
-    ```
-    [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
-    ```
+As rotas de autenticação do Django estão habilitadas em `/accounts/` — por exemplo, o login fica em `/accounts/login/`.
 
-**Observações de Acesso:**
-* **Calculadora:** Use a interface principal para calcular as emissões de $\text{CO}_2$.
-* **Administração:** Acesse a área de gestão de dados em `http://127.0.0.1:8000/admin/`.
-* **Autenticação:** As rotas padrão de login/logout estão em `/accounts/` (ex: `/accounts/login/`).
+### Imagens
+![Página inicial](img/home.png) 
+![Página cálculo](img/calculadora.png)
 
----
-
-## 📸 Imagens do Projeto
-
-| Tela | Visualização |
-| :--- | :--- |
-| **Página Inicial** | ![Página inicial](img/home.png) |
-| **Página Cálculo** | ![Página cálculo](img/calculadora.png) |
