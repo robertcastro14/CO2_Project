@@ -160,5 +160,8 @@ CELERY_BEAT_SCHEDULE = {
     },
 }
 
-# Configuração para envio de e-mail (imprime no console para testes)
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# Configuração para testar envio de e-mails no console (imprime o link no terminal)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Garante que o Django saiba onde está a página de login caso um usuário não logado tente acessar uma área restrita
+LOGIN_URL = '/accounts/login/'
