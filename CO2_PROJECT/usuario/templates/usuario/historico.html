@@ -22,6 +22,21 @@
             </div>
         </div>
 
+        <div class="card card-body bg-light mb-4">
+            <form method="get" action="{% url 'historico' %}" class="row g-3 align-items-center">
+                <div class="col-auto">
+                    <label for="transporte" class="col-form-label fw-bold">Filtrar por Transporte:</label>
+                </div>
+                <div class="col-auto">
+                    <input type="text" name="transporte" id="transporte" class="form-control" placeholder="Ex: carro, onibus..." value="{{ request.GET.transporte }}">
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-success">Buscar</button>
+                    <a href="{% url 'historico' %}" class="btn btn-outline-secondary">Limpar</a>
+                </div>
+            </form>
+        </div>
+
         {% if registros %}
             <h3 class="mb-3 text-secondary">Detalhes das Últimas Viagens</h3>
             <div class="table-responsive">

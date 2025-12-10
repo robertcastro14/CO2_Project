@@ -75,18 +75,28 @@ def calculadora(request):
     return render(request, 'usuario/calculadora.html', {'resultado': resultado})
 
 def historico(request):
-    # Filtra todos os cálculos feitos APENAS pelo usuário logado, 
-    # ordenando do mais recente para o mais antigo (o sinal de '-' em 'data_calculo')
-    registros = RegistroCalculo.objects.filter(usuario=request.user).order_by('-data_calculo')
+    # Pega o termo digitado no campo de busca (se houver)
+    termo_busca = request.GET.get('transporte')
+    
+    # Começa pegando todos os registros do usuário
+    registros = RegistroCalculo.objects.filter(usuario=request.user)
 
-    # Calcula o total de CO2 emitido e o total de árvores necessárias
+    # Se houver um termo de busca, filtra os registros
+    if termo_busca:
+        # 'transporte__icontains' busca textos que contenham o termo (ignorando maiúsculas/minúsculas)
+        registros = registros.filter(transporte__icontains=termo_busca)
+
+    # Ordena do mais recente para o antigo
+    registros = registros.order_by('-data_calculo')
+
+    # Recalcula os totais com base nos registros filtrados (ou todos, se não houver filtro)
     total_co2 = sum(r.co2_emitido for r in registros)
     total_arvores = sum(r.arvores for r in registros)
     
     context = {
         'registros': registros,
         'total_co2': round(total_co2, 2),
-        'total_arvores': round(total_arvores) # Arredondamos árvores para não ter 0.5 árvores
+        'total_arvores': round(total_arvores)
     }
     
     return render(request, 'usuario/historico.html', context)
