@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="alert alert-success mt-5" role="alert">
+  <h4 class="alert-heading">Senha Alterada!</h4>
+  <p>Sua senha foi alterada com sucesso.</p>
+  <hr>
+  <a href="{% url 'home' %}" class="btn btn-success">Voltar para Home</a>
+</div>
+{% endblock %}

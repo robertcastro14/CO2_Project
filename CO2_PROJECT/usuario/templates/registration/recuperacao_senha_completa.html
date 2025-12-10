@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="alert alert-success mt-5">
+    <h4>Senha Redefinida!</h4>
+    <p>Sua senha foi redefinida com sucesso. Você já pode fazer login.</p>
+    <a href="{% url 'login' %}" class="btn btn-primary">Fazer Login</a>
+</div>
+{% endblock %}

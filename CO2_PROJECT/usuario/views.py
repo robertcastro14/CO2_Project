@@ -74,6 +74,7 @@ def calculadora(request):
 
     return render(request, 'usuario/calculadora.html', {'resultado': resultado})
 
+@login_required
 def historico(request):
     # Pega o termo digitado no campo de busca (se houver)
     termo_busca = request.GET.get('transporte')

@@ -159,3 +159,6 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': crontab(hour=8, minute=0), 
     },
 }
+
+# Configuração para envio de e-mail (imprime no console para testes)
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
