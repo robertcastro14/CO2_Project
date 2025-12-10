@@ -113,3 +113,9 @@ def marcar_notificacao_lida(request, notificacao_id):
         
     # Redireciona de volta para a home
     return redirect('home')
+
+def sobre(request):
+    return render(request, 'usuario/sobre.html')
+
+def contato(request):
+    return render(request, 'usuario/contato.html')

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card card-eco p-5">
+            <h2 class="text-center text-success fw-bold mb-4">Fale Conosco</h2>
+            <form>
+                <div class="mb-3">
+                    <label class="form-label">Nome</label>
+                    <input type="text" class="form-control" placeholder="Seu nome">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">E-mail</label>
+                    <input type="email" class="form-control" placeholder="seu@email.com">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Mensagem</label>
+                    <textarea class="form-control" rows="4"></textarea>
+                </div>
+                <button type="submit" class="btn btn-eco w-100">Enviar Mensagem</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
