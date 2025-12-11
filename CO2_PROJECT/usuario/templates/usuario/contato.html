@@ -2,44 +2,139 @@
 {% load static %}
 
 {% block content %}
-<div class="container py-5">
+
+<style>
+    .contact-wrapper {
+        width: 100%;
+        padding: 1rem 0;
+    }
+
+    /* --- CARTÕES COM PERSONALIDADE --- */
+    .contact-card, .info-card {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        border: 1px solid #e0e0e0;
+        padding: 2.5rem;
+        height: 100%;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .contact-card:hover, .info-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Bordas de topo coloridas para identidade */
+    .contact-card { border-top: 6px solid #2E7D32; } /* Verde EcoRota */
+    .info-card { border-top: 6px solid #198754; } /* Verde Complementar */
+
+    /* --- INPUTS ESTILIZADOS --- */
+    .custom-input {
+        background-color: #f8f9fa;
+        border: 2px solid #e9ecef;
+        border-radius: 12px;
+        padding: 14px 18px;
+        font-size: 1rem;
+        transition: all 0.2s;
+    }
+    .custom-input:focus {
+        background-color: #fff;
+        border-color: #2E7D32;
+        box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.1);
+    }
+
+    /* --- BOTÃO GRADIENTE --- */
+    .btn-gradient {
+        background: linear-gradient(135deg, #2E7D32 0%, #1b5e20 100%);
+        color: white;
+        font-weight: 700;
+        border: none;
+        padding: 14px;
+        border-radius: 12px;
+        font-size: 1.1rem;
+        box-shadow: 0 4px 15px rgba(46, 125, 50, 0.3);
+        transition: all 0.3s;
+    }
+    .btn-gradient:hover {
+        transform: translateY(-2px);
+        color: white;
+        box-shadow: 0 6px 20px rgba(46, 125, 50, 0.4);
+    }
+
+    /* Ícones com fundo */
+    .icon-circle {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        flex-shrink: 0;
+        margin-right: 1rem;
+    }
+    
+    .social-btn {
+        width: 45px;
+        height: 45px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        font-size: 1.2rem;
+        transition: all 0.2s;
+    }
+    .social-btn:hover {
+        transform: translateY(-3px);
+    }
+</style>
+
+<div class="contact-wrapper">
     
     <div class="text-center mb-5">
-        <i class="bi bi-chat-dots-fill text-success" style="font-size: 2.5rem;"></i>
-        <h1 class="display-4 fw-bold text-success mt-2 mb-2">Fale Conosco</h1>
-        <p class="lead text-secondary mx-auto" style="max-width: 800px;">
-            Tem dúvidas ou interesse em saber como o EcoRota pode ajudar sua comunidade?
+        <div class="d-inline-flex align-items-center justify-content-center bg-success bg-opacity-10 p-3 rounded-circle mb-3">
+            <i class="bi bi-chat-dots-fill text-success" style="font-size: 2.5rem;"></i>
+        </div>
+        <h1 class="display-5 fw-bold text-dark mb-3">Fale Conosco</h1>
+        <p class="lead text-muted mx-auto" style="max-width: 700px;">
+            Tem dúvidas ou interesse em saber como o EcoRota pode ajudar sua comunidade? Estamos aqui para ouvir você.
         </p>
     </div>
 
-    <div class="row g-5 justify-content-center">
+    <div class="row g-5">
         
         <div class="col-lg-7">
-            <div class="card card-eco p-4 p-md-5">
-                <h3 class="fw-bold text-dark mb-4 border-bottom pb-3">Preencha o Formulário</h3>
+            <div class="contact-card">
+                <h3 class="fw-bold text-dark mb-4 pb-3 border-bottom">Preencha o Formulário</h3>
                 
                 <form method="post" action="#"> 
                     {% csrf_token %}
                     
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold text-secondary text-uppercase ls-1" for="nome">Nome Completo</label>
+                                <input type="text" class="form-control custom-input" id="nome" placeholder="Seu nome" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold text-secondary text-uppercase ls-1" for="telefone">Telefone</label>
+                                <input type="tel" class="form-control custom-input" id="telefone" placeholder="(XX) XXXXX-XXXX">
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="mb-3">
-                        <label class="form-label small fw-bold text-muted" for="nome">Nome Completo *</label>
-                        <input type="text" class="form-control" id="nome" placeholder="Seu nome" required>
+                        <label class="form-label small fw-bold text-secondary text-uppercase ls-1" for="email">E-mail</label>
+                        <input type="email" class="form-control custom-input" id="email" placeholder="seu@email.com" required>
                     </div>
                     
                     <div class="mb-3">
-                        <label class="form-label small fw-bold text-muted" for="email">E-mail *</label>
-                        <input type="email" class="form-control" id="email" placeholder="seu@email.com" required>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label class="form-label small fw-bold text-muted" for="telefone">Telefone</label>
-                        <input type="tel" class="form-control" id="telefone" placeholder="(XX) XXXXX-XXXX">
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label class="form-label small fw-bold text-muted" for="assunto">Assunto *</label>
-                        <select class="form-select" id="assunto" required>
-                            <option value="" disabled selected>Selecione um assunto</option>
+                        <label class="form-label small fw-bold text-secondary text-uppercase ls-1" for="assunto">Assunto</label>
+                        <select class="form-select custom-input" id="assunto" required>
+                            <option value="" disabled selected>— Selecione um assunto —</option>
                             <option value="duvidas">Dúvidas sobre o cálculo</option>
                             <option value="sugestoes">Sugestões e melhorias</option>
                             <option value="parcerias">Parcerias e Negócios</option>
@@ -48,20 +143,20 @@
                     </div>
 
                     <div class="mb-4">
-                        <label class="form-label small fw-bold text-muted" for="mensagem">Mensagem *</label>
-                        <textarea class="form-control" id="mensagem" rows="5" placeholder="Digite sua mensagem detalhada..." required></textarea>
+                        <label class="form-label small fw-bold text-secondary text-uppercase ls-1" for="mensagem">Mensagem</label>
+                        <textarea class="form-control custom-input" id="mensagem" rows="5" placeholder="Como podemos ajudar?" required></textarea>
                     </div>
                     
                     <div class="form-check mb-4">
-                        <input class="form-check-input" type="checkbox" value="" id="termos">
+                        <input class="form-check-input" type="checkbox" value="" id="termos" required>
                         <label class="form-check-label small text-muted" for="termos">
-                            Concordo com os termos de privacidade (dados serão usados apenas para contato).
+                            Concordo com os termos de privacidade.
                         </label>
                     </div>
                     
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-eco btn-lg">
-                            Enviar Contato <i class="bi bi-arrow-right ms-2"></i>
+                        <button type="submit" class="btn btn-gradient">
+                            Enviar Mensagem <i class="bi bi-send-fill ms-2"></i>
                         </button>
                     </div>
                 </form>
@@ -69,41 +164,52 @@
         </div>
         
         <div class="col-lg-5">
-            
-            <h3 class="fw-bold text-dark mb-4">Informações</h3>
+            <div class="info-card">
+                
+                <h3 class="fw-bold text-dark mb-4">Informações de Contato</h3>
+                <p class="text-muted mb-4">Prefere falar diretamente? Utilize um dos nossos canais oficiais abaixo.</p>
 
-            <div class="d-flex align-items-start p-3 border-bottom border-light-subtle">
-                <i class="bi bi-envelope-fill text-success me-3 mt-1" style="font-size: 1.5rem;"></i>
-                <div>
-                    <p class="small text-muted mb-0 fw-bold">E-mail</p>
-                    <a href="mailto:contato@ecorota.com.br" class="text-decoration-none fw-bold text-dark">contato@ecorota.com.br</a>
+                <div class="d-flex align-items-center mb-4 p-3 bg-light rounded-3 border border-light">
+                    <div class="icon-circle bg-white text-success shadow-sm">
+                        <i class="bi bi-envelope-fill"></i>
+                    </div>
+                    <div>
+                        <p class="small text-uppercase text-muted fw-bold mb-0">E-mail</p>
+                        <a href="mailto:contato@ecorota.com.br" class="text-decoration-none fw-bold text-dark fs-5">contato@ecorota.com.br</a>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="d-flex align-items-start p-3 border-bottom border-light-subtle">
-                <i class="bi bi-whatsapp text-success me-3 mt-1" style="font-size: 1.5rem;"></i>
-                <div>
-                    <p class="small text-muted mb-0 fw-bold">Telefone/WhatsApp</p>
-                    <a href="https://wa.me/5521999999999" target="_blank" class="text-decoration-none fw-bold text-dark">(21) 99999-9999</a>
+                
+                <div class="d-flex align-items-center mb-4 p-3 bg-light rounded-3 border border-light">
+                    <div class="icon-circle bg-white text-success shadow-sm">
+                        <i class="bi bi-whatsapp"></i>
+                    </div>
+                    <div>
+                        <p class="small text-uppercase text-muted fw-bold mb-0">WhatsApp</p>
+                        <a href="https://wa.me/5521999999999" target="_blank" class="text-decoration-none fw-bold text-dark fs-5">(21) 99999-9999</a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="d-flex align-items-start p-3 border-bottom border-light-subtle">
-                <i class="bi bi-building-fill text-success me-3 mt-1" style="font-size: 1.5rem;"></i>
-                <div>
-                    <p class="small text-muted mb-0 fw-bold">Endereço de Referência</p>
-                    <p class="mb-0 fw-bold text-dark">PUC-Rio, Gávea</p>
-                    <p class="small text-muted mb-0">Rio de Janeiro - RJ</p>
+                <div class="d-flex align-items-center mb-5 p-3 bg-light rounded-3 border border-light">
+                    <div class="icon-circle bg-white text-success shadow-sm">
+                        <i class="bi bi-geo-alt-fill"></i>
+                    </div>
+                    <div>
+                        <p class="small text-uppercase text-muted fw-bold mb-0">Localização</p>
+                        <p class="mb-0 fw-bold text-dark">PUC-Rio, Gávea</p>
+                        <small class="text-muted">Rio de Janeiro - RJ</small>
+                    </div>
                 </div>
-            </div>
 
-            <div class="mt-4 p-3">
-                <h5 class="fw-bold text-dark mb-3">Siga-nos</h5>
-                <a href="#" class="btn btn-outline-success me-2"><i class="bi bi-linkedin"></i></a>
-                <a href="#" class="btn btn-outline-success me-2"><i class="bi bi-instagram"></i></a>
-                <a href="#" class="btn btn-outline-success"><i class="bi bi-twitter-x"></i></a>
-            </div>
+                <div class="border-top pt-4">
+                    <h5 class="fw-bold text-dark mb-3">Redes Sociais</h5>
+                    <div class="d-flex gap-2">
+                        <a href="#" class="social-btn btn-outline-primary"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="social-btn btn-outline-danger"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-btn btn-outline-dark"><i class="bi bi-twitter-x"></i></a>
+                    </div>
+                </div>
 
+            </div>
         </div>
     </div>
 </div>
