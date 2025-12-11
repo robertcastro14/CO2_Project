@@ -3,16 +3,27 @@
 
 {% block content %}
 
-<div class="p-5 mb-4 bg-white rounded-3 shadow-sm border-start border-5 border-success">
+<div class="position-relative text-center text-white mb-5 home-banner"
+     style="background: linear-gradient(rgba(15, 50, 30, 0.6), rgba(15, 50, 30, 0.5)), url('{% static "usuario/img/home_predio_verde.jpg" %}'); 
+            background-size: cover; 
+            background-position: center; 
+            padding: 8rem 1rem; 
+            border-radius: 0 0 30px 30px;">
+    
+    <h1 class="display-3 fw-bold">EcoRota</h1>
+    <p class="lead mb-4 fw-bold">Sua jornada para um futuro sustentável começa aqui.</p>
+</div>
+
+<div>
+    <div class="p-5 mb-4 bg-white rounded-3 shadow-sm border-start border-5 border-success">
     <div class="container-fluid py-3">
         <h1 class="display-5 fw-bold text-success">Calcule sua Pegada de Carbono</h1>
         <p class="col-md-8 fs-4 text-muted">O EcoRota ajuda você a monitorar e reduzir suas emissões de CO2 no transporte diário. Simples, rápido e sustentável.</p>
-        <a href="{% url 'calculadora' %}" class="btn btn-eco btn-lg mt-2">
+        <a href="{% url 'calculadora' %}" class="btn btn-success btn-lg mt-2">
             <i class="bi bi-calculator"></i> Começar Agora
         </a>
     </div>
 </div>
-
 <div class="container mt-4">
 
     {# LÓGICA DE EXIBIÇÃO DA NOTIFICAÇÃO (RF12) #}
@@ -24,36 +35,46 @@
         <p class="mb-2">
             <strong>{{ notificacao.dica.titulo }}:</strong> {{ notificacao.dica.conteudo }}
         </p>
-        
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
-        <a href="{% url 'marcar_notificacao_lida' notificacao.id %}" class="alert-link small text-decoration-underline">
+        <a href="{% url 'marcar_notificacao_lida' notificacao.id %}" class="btn btn-sm btn-outline-success">
             Marcar como lida
         </a>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
     </div>
     {% endif %}
 
-    {# Conteúdo da Seção Principal (Hero) #}
-    <section class="hero text-center" style="padding: 4rem 1rem;">
-        <h1 style="font-size: 2.5rem; color: #2E7D32; margin-bottom: 1rem;">Calcule sua Pegada de Carbono</h1>
-        <p style="font-size: 1.2rem; margin-bottom: 2rem; color: #555;">Entenda o impacto das suas escolhas de transporte no meio ambiente e descubra como reduzi-lo.</p>
+    {# Seção de Features #}
+    <section class="features row g-4 py-5 justify-content-center">
         
-        <a href="{% url 'calculadora' %}" class="btn-cta" style="background-color: #2E7D32; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; font-size: 1.1rem;">Começar Agora</a>
+        <div class="col-md-4 col-lg-3"> <div class="card card-eco h-100 p-4 text-center border-0 shadow-sm">
+                <div class="text-success mb-3">
+                    <h3 class="display-4">🚗</h3>
+                </div>
+                <h3 class="h4 fw-bold">Calculadora</h3>
+                <p class="text-muted">Compare as emissões entre carro, ônibus, metrô e bicicleta.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-lg-3">
+            <div class="card card-eco h-100 p-4 text-center border-0 shadow-sm">
+                <div class="text-success mb-3">
+                    <h3 class="display-4">📉</h3>
+                </div>
+                <h3 class="h4 fw-bold">Monitoramento</h3>
+                <p class="text-muted">Acompanhe suas emissões mensais e visualize gráficos.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-lg-3">
+            <div class="card card-eco h-100 p-4 text-center border-0 shadow-sm">
+                <div class="text-success mb-3">
+                    <h3 class="display-4">🌱</h3>
+                </div>
+                <h3 class="h4 fw-bold">Dicas Verdes</h3>
+                <p class="text-muted">Aprenda formas simples de reduzir seu impacto ambiental.</p>
+            </div>
+        </div>
+
     </section>
 
-    {# Seção de Features #}
-    <section class="features d-flex justify-content-center gap-4 py-5 flex-wrap">
-        <div class="card shadow p-4 text-center" style="width: 300px;">
-            <h3>🚗 Calculadora</h3>
-            <p>Compare as emissões entre carro, ônibus, metrô e bicicleta.</p>
-        </div>
-        <div class="card shadow p-4 text-center" style="width: 300px;">
-            <h3>📉 Monitoramento</h3>
-            <p>Acompanhe suas emissões mensais e visualize gráficos.</p>
-        </div>
-        <div class="card shadow p-4 text-center" style="width: 300px;">
-            <h3>🌱 Dicas Verdes</h3>
-            <p>Aprenda formas simples de reduzir seu impacto ambiental.</p>
-        </div>
-    </section>
 </div>
 {% endblock content %}

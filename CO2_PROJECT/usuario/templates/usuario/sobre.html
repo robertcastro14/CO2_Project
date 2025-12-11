@@ -1,17 +1,39 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
 
-<div class="bg-light py-5 mb-5" style="background-color: #eaf7ee;">
-    <div class="container text-center">
-        <i class="bi bi-geo-alt-fill text-success" style="font-size: 2.5rem;"></i>
-        <h1 class="display-4 fw-bold text-success mt-2 mb-3">Quem Somos</h1>
-        <p class="lead text-secondary mx-auto" style="max-width: 800px;">
-            O EcoRota é uma iniciativa nascida na PUC-Rio com a missão de medir, entender e agir para
-            reduzir a pegada de carbono no transporte de nossa comunidade e além.
+<div class="position-relative mb-5" 
+     style="background: linear-gradient(rgba(10, 60, 30, 0.7), rgba(10, 60, 30, 0.5)), url('{% static 'usuario/img/hero_aereo.jpg' %}'); 
+            background-size: cover; 
+            background-position: center; 
+            height: 450px; 
+            border-radius: 0 0 30px 30px; /* Arredonda apenas os cantos de baixo, estilo moderno */
+            box-shadow: 0 10px 40px rgba(15, 81, 50, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;">
+    
+    <div class="container text-center text-white px-3">
+        <span class="badge bg-success mb-3 px-3 py-2 text-uppercase fw-bold" 
+              style="letter-spacing: 2px; font-size: 0.75rem; background-color: #2E7D32 !important;">
+            Sustentabilidade
+        </span>
+        
+        <h1 class="display-3 fw-bold mb-3" style="text-shadow: 0 2px 10px rgba(0,0,0,0.3);">
+            Jornada Ecológica
+        </h1>
+        
+        <p class="lead mx-auto" style="max-width: 700px; font-weight: 500; text-shadow: 0 1px 5px rgba(0,0,0,0.3);">
+            Entenda como suas escolhas de transporte moldam o futuro do nosso planeta.
         </p>
     </div>
+</div>
+
+<div class="container" style="max-width: 800px;">
+    <h2 class="fw-bold text-success mb-4">Quem Somos</h2>
+    <p class="text-muted fs-5 mb-5">
+        O EcoRota é uma iniciativa nascida na PUC-Rio com a missão de medir, entender e agir...
+    </p>
 </div>
 
 <div class="container my-5">
