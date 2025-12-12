@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ranking Sustentável</title>
+  <link rel="stylesheet" href="{% static 'usuario/css/ranking.css' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="bg-blur-circle"></div>
+  <div class="bg-blur-circle2"></div>
+
+  <a href="{% url 'home' %}" style="position: absolute; top: 20px; left: 20px; text-decoration: none; font-weight: bold; color: #0f2f23;">
+    &larr; Voltar
+  </a>
+
+  <header>
+    <h1>Ranking Sustentável</h1>
+    <p class="subtitle">Top usuários que mais economizaram CO₂ (comparado ao uso de carro)</p>
+  </header>
+
+  <section class="ranking-container">
+
+    <div class="filters">
+      <button class="active">🌍 Global</button>
+      <button>👥 Amigos</button>
+      <button>📍 Local</button>
+    </div>
+
+    <div class="ranking-card">
+
+      {% for item in ranking %}
+        <div class="item 
+            {% if item.posicao == 1 %}first{% endif %}
+            {% if item.posicao == 2 %}second{% endif %}
+            {% if item.posicao == 3 %}third{% endif %}
+            {% if item.usuario == request.user %}me{% endif %}
+        ">
+        
+          <div class="left">
+            <span class="posicao">{{ item.posicao }}º</span>
+            
+            <div class="avatar 
+                {% if item.posicao == 1 %}gold
+                {% elif item.posicao == 2 %}silver
+                {% elif item.posicao == 3 %}bronze
+                {% elif item.usuario == request.user %}me-avatar
+                {% endif %}
+            ">
+              {{ item.nome|slice:":1"|upper }}
+            </div>
+            
+            <div class="info">
+              <span class="name">
+                {% if item.usuario == request.user %}
+                    Você
+                {% else %}
+                    {{ item.nome }}
+                {% endif %}
+              </span>
+              <span class="city">{{ item.cidade }}</span>
+            </div>
+          </div>
+          
+          <div class="co2">{{ item.total_economizado }} kg</div>
+        </div>
+      
+      {% empty %}
+        <div style="padding: 20px; text-align: center; color: #555;">
+            Nenhum cálculo registrado ainda.
+        </div>
+      {% endfor %}
+
+    </div>
+
+  </section>
+
+</body>
+</html>

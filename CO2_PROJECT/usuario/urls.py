@@ -10,4 +10,7 @@ urlpatterns = [
     # Adicione as rotas aqui, onde 'views' foi importado
     path('sobre/', views.sobre, name='sobre'),
     path('contato/', views.contato, name='contato'),
+
+    # Adicione esta linha:
+    path('ranking/', views.ranking, name='ranking'),
 ]
